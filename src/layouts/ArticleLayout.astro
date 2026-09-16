@@ -1,0 +1,61 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { SITE_TITLE } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  breadcrumb: { label: string; href: string }[];
+}
+
+const { title, description, pubDate, updatedDate, breadcrumb } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { '@type': 'Organization', name: SITE_TITLE },
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumb.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    item: new URL(item.href, Astro.site).toString(),
+  })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+
+  <nav class="mb-6 text-sm text-slate-500" aria-label="breadcrumb">
+    {breadcrumb.map((item, i) => (
+      <span>
+        {i > 0 && <span class="mx-1">/</span>}
+        {i === breadcrumb.length - 1 ? (
+          <span class="text-slate-700">{item.label}</span>
+        ) : (
+          <a href={item.href} class="hover:text-sky-600">{item.label}</a>
+        )}
+      </span>
+    ))}
+  </nav>
+
+  <article class="prose-article">
+    <h1>{title}</h1>
+    <p class="!mt-2 text-sm text-slate-500">
+      更新日: {(updatedDate ?? pubDate).toLocaleDateString('ja-JP')}
+    </p>
+    <slot />
+  </article>
+</BaseLayout>

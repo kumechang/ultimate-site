@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('skills', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout
+  title="アルティメットの基本技術"
+  description="バックハンド、フリック、ハンマーなど、アルティメットの基本スロー技術を解説します。"
+>
+  <h1 class="text-3xl font-bold text-slate-900">基本技術</h1>
+  <p class="mt-3 text-slate-600">アルティメットの基本となるスロー技術を紹介します。</p>
+
+  <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+    {entries.map((entry) => (
+      <li class="rounded-lg border border-slate-200 p-5 hover:border-sky-300 hover:shadow-sm">
+        <a href={`/skills/${entry.id}/`} class="block">
+          <h2 class="font-semibold text-slate-900">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-slate-600">{entry.data.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <p class="mt-8 text-sm text-slate-600">
+    専門用語の意味は <a href="/glossary/" class="text-sky-600 hover:underline">用語集</a> でまとめて確認できます。
+  </p>
+</BaseLayout>

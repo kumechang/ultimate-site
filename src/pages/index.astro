@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    href: '/basics/',
+    title: 'アルティメットとは',
+    desc: '競技概要、SOTG、歴史、基本ルール、ポジション、戦術を解説します。',
+  },
+  {
+    href: '/gear/',
+    title: 'ギア選び',
+    desc: 'ディスク、スパイク、グローブ、ウェアなど必須アイテムの選び方。',
+  },
+  {
+    href: '/skills/',
+    title: '技術・用語',
+    desc: '3大スローの解説など、上達に役立つ基本技術を紹介します。',
+  },
+  {
+    href: '/glossary/',
+    title: '用語集',
+    desc: 'ストールカウントやレイアウトなど、観戦・プレーで役立つ用語集。',
+  },
+  {
+    href: '/start/',
+    title: '始め方',
+    desc: '体験できる場所、サークル・チーム・個アルの探し方。',
+  },
+];
+---
+
+<BaseLayout>
+  <section class="rounded-2xl bg-gradient-to-br from-sky-500 to-lime-500 px-6 py-16 text-center text-white sm:py-24">
+    <h1 class="text-3xl font-extrabold sm:text-4xl">アルティメットを、はじめよう。</h1>
+    <p class="mx-auto mt-4 max-w-xl text-sky-50">
+      ルール・戦術の基礎から、初心者が揃えておきたいギアの選び方まで。初めてのアルティメットをサポートします。
+    </p>
+    <a
+      href="/basics/what-is-ultimate/"
+      class="mt-8 inline-block rounded-full bg-white px-6 py-3 font-semibold text-sky-700 hover:bg-sky-50"
+    >
+      アルティメットとは？を読む
+    </a>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-slate-900">サイトのコンテンツ</h2>
+    <ul class="mt-6 grid gap-5 sm:grid-cols-2">
+      {sections.map((s) => (
+        <li class="rounded-xl border border-slate-200 p-6 hover:border-sky-300 hover:shadow-sm">
+          <a href={s.href}>
+            <h3 class="text-lg font-semibold text-slate-900">{s.title}</h3>
+            <p class="mt-2 text-sm text-slate-600">{s.desc}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

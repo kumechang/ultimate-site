@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AFFILIATE_DISCLOSURE } from '../../consts';
+
+const entries = (await getCollection('gear', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout
+  title="アルティメットの必須アイテム・おすすめギア選び"
+  description="ディスク、スパイク、グローブ、ウェアなど、アルティメット初心者が揃えておきたい必須アイテムの選び方をまとめました。"
+>
+  <h1 class="text-3xl font-bold text-slate-900">必須アイテムと選び方</h1>
+  <p class="mt-3 text-slate-600">
+    アルティメットを始めるにあたって揃えておきたいアイテムを、選び方のポイントとあわせて紹介します。
+  </p>
+  <p class="mt-2 text-xs text-slate-400">{AFFILIATE_DISCLOSURE}</p>
+
+  <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+    {entries.map((entry) => (
+      <li class="rounded-lg border border-slate-200 p-5 hover:border-sky-300 hover:shadow-sm">
+        <a href={`/gear/${entry.id}/`} class="block">
+          <h2 class="font-semibold text-slate-900">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-slate-600">{entry.data.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

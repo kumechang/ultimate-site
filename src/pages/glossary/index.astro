@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const terms = (await getCollection('glossary')).sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(
+  terms.map(async (term) => ({ term, Content: (await render(term)).Content }))
+);
+---
+
+<BaseLayout
+  title="アルティメット用語集"
+  description="ストールカウント、レイアウト、スローオフなど、アルティメットの観戦・プレーで役立つ専門用語をまとめて解説します。"
+>
+  <h1 class="text-3xl font-bold text-slate-900">アルティメット用語集</h1>
+  <p class="mt-3 text-slate-600">観戦・プレーで役立つ専門用語をまとめました。</p>
+
+  <dl class="prose-article mt-8">
+    {rendered.map(({ term, Content }) => (
+      <div id={term.id} class="mb-6 scroll-mt-24 border-b border-slate-100 pb-6">
+        <dt class="text-lg font-semibold text-slate-900">{term.data.term}</dt>
+        <dd class="mt-1">
+          <Content />
+        </dd>
+      </div>
+    ))}
+  </dl>
+</BaseLayout>

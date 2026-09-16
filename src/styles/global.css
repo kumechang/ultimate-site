@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-brand-sky: #0ea5e9;
+  --color-brand-lime: #84cc16;
+  --color-brand-navy: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-800 antialiased;
+}
+
+.prose-article {
+  @apply prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline;
+}
