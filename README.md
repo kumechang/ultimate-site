@@ -53,11 +53,12 @@ npm run build    # 本番ビルド（dist/ に出力）
 npm run preview  # ビルド結果のプレビュー
 ```
 
-## 公開前のTODO
+## 公開状況
 
-- [ ] `astro.config.mjs` の `SITE_URL` を実際のドメインに変更
-- [ ] `public/robots.txt` の sitemap URL を実際のドメインに変更
+- 本番URL: https://ultimate-navi.com/（Cloudflare Pages、GitHub連携で自動デプロイ）
+
+## 残タスク
+
 - [ ] `public/og-default.png`（OGP画像）を追加
 - [ ] Amazonアソシエイトの商品リンクを実際のURLに差し替え
 - [ ] Google Search Console / Analytics の設置
-- [ ] デザイン確定後、Canvaのエクスポート画像・配色をコンポーネントに反映
