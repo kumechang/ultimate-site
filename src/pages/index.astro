@@ -31,17 +31,28 @@ const sections = [
 ---
 
 <BaseLayout>
-  <section class="rounded-2xl bg-gradient-to-br from-sky-500 to-lime-500 px-6 py-16 text-center text-white sm:py-24">
-    <h1 class="text-3xl font-extrabold sm:text-4xl">アルティメットを、はじめよう。</h1>
-    <p class="mx-auto mt-4 max-w-xl text-sky-50">
-      ルール・戦術の基礎から、初心者が揃えておきたいギアの選び方まで。初めてのアルティメットをサポートします。
-    </p>
-    <a
-      href="/basics/what-is-ultimate/"
-      class="mt-8 inline-block rounded-full bg-white px-6 py-3 font-semibold text-sky-700 hover:bg-sky-50"
-    >
-      アルティメットとは？を読む
-    </a>
+  <section class="flex flex-col items-center gap-8 overflow-hidden rounded-2xl bg-gradient-to-br from-sky-500 to-lime-500 px-6 py-12 text-white sm:flex-row sm:gap-10 sm:px-16 sm:py-16">
+    <div class="flex-1 text-center sm:text-left">
+      <h1 class="text-3xl font-extrabold sm:text-4xl">アルティメットを、はじめよう。</h1>
+      <p class="mx-auto mt-4 max-w-xl text-sky-50 sm:mx-0">
+        ルール・戦術の基礎から、初心者が揃えておきたいギアの選び方まで。初めてのアルティメットをサポートします。
+      </p>
+      <a
+        href="/basics/what-is-ultimate/"
+        class="mt-8 inline-block rounded-full bg-white px-6 py-3 font-semibold text-sky-700 hover:bg-sky-50"
+      >
+        アルティメットとは？を読む
+      </a>
+    </div>
+    <div class="flex-1">
+      <img
+        src="/images/hero-illustration.png"
+        alt="フライングディスクを投げるプレイヤーのイラスト"
+        class="w-full rounded-xl"
+        width="1920"
+        height="1080"
+      />
+    </div>
   </section>
 
   <section class="mt-16">
