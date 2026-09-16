@@ -4,8 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// TODO: 独自ドメインが決まったら差し替える
-const SITE_URL = 'https://example.com';
+const SITE_URL = 'https://ultimate-navi.com';
 
 export default defineConfig({
   site: SITE_URL,
