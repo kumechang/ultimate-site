@@ -9,9 +9,10 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  type?: 'website' | 'article';
 }
 
-const { title, description, image, noindex } = Astro.props;
+const { title, description, image, noindex, type = 'website' } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +22,7 @@ const { title, description, image, noindex } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <Seo title={title} description={description} image={image} noindex={noindex} />
+    <Seo title={title} description={description} image={image} noindex={noindex} type={type} />
   </head>
   <body>
     <Header />
