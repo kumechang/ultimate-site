@@ -28,19 +28,32 @@ const sections = [
     desc: '体験できる場所、サークル・チーム・個アルの探し方。',
   },
 ];
-const gamePhotos = [
-  { src: '/images/photos/ultimate-game-01.avif', alt: 'アルティメットの試合中、ディスクをパスする選手' },
-  { src: '/images/photos/disc-throw-jump.avif', alt: 'ジャンプしてディスクをキャッチする選手' },
-  { src: '/images/photos/ultimate-team-02.avif', alt: 'チームで集まるアルティメットプレイヤーたち' },
-  { src: '/images/photos/ultimate-game-03.avif', alt: 'アルティメットの試合中の攻防' },
+const heroPhotos = [
+  '/images/photos/ultimate-game-01.avif',
+  '/images/photos/ultimate-game-02.avif',
+  '/images/photos/ultimate-game-03.avif',
+  '/images/photos/ultimate-game-04.avif',
+  '/images/photos/ultimate-team-02.avif',
+  '/images/photos/ultimate-action-01.avif',
+  '/images/photos/disc-throw-jump.avif',
+  '/images/photos/disc-closeup-02.avif',
 ];
 ---
 
 <BaseLayout title="初心者から経験者まで使えるアルティメット総合ガイド">
-  <section class="flex flex-col items-center gap-8 overflow-hidden rounded-2xl bg-gradient-to-br from-sky-500 to-lime-500 px-6 py-12 text-white sm:flex-row sm:gap-10 sm:px-16 sm:py-16">
-    <div class="flex-1 text-center sm:text-left">
-      <h1 class="text-3xl font-extrabold sm:text-4xl">アルティメットを、はじめよう。</h1>
-      <p class="mx-auto mt-4 max-w-xl text-sky-50 sm:mx-0">
+  <section slot="full-bleed" class="relative overflow-hidden bg-slate-900">
+    <div
+      class="grid h-[520px] grid-cols-2 grid-rows-4 sm:h-[560px] sm:grid-cols-4 sm:grid-rows-2"
+      aria-hidden="true"
+    >
+      {heroPhotos.map((src) => (
+        <img src={src} alt="" loading="eager" class="h-full w-full object-cover opacity-80" />
+      ))}
+    </div>
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-slate-900/20"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
+      <h1 class="text-3xl font-extrabold drop-shadow-lg sm:text-5xl">アルティメットを、はじめよう。</h1>
+      <p class="mt-4 max-w-xl text-slate-100 drop-shadow sm:text-lg">
         ルール・戦術の基礎から、初心者が揃えておきたいギアの選び方まで。初めてのアルティメットをサポートします。
       </p>
       <a
@@ -49,15 +62,6 @@ const gamePhotos = [
       >
         アルティメットとは？を読む
       </a>
-    </div>
-    <div class="flex-1">
-      <img
-        src="/images/hero-illustration.png"
-        alt="フライングディスクを投げるプレイヤーのイラスト"
-        class="w-full rounded-xl"
-        width="1920"
-        height="1080"
-      />
     </div>
   </section>
 
@@ -70,22 +74,6 @@ const gamePhotos = [
             <h3 class="text-lg font-semibold text-slate-900">{s.title}</h3>
             <p class="mt-2 text-sm text-slate-600">{s.desc}</p>
           </a>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="mt-16">
-    <h2 class="text-2xl font-bold text-slate-900">実際のプレーの様子</h2>
-    <ul class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-      {gamePhotos.map((p) => (
-        <li>
-          <img
-            src={p.src}
-            alt={p.alt}
-            loading="lazy"
-            class="aspect-square w-full rounded-lg object-cover"
-          />
         </li>
       ))}
     </ul>

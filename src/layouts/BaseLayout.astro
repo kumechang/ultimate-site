@@ -26,6 +26,7 @@ const { title, description, image, noindex, type = 'website' } = Astro.props;
   </head>
   <body>
     <Header />
+    <slot name="full-bleed" />
     <main class="mx-auto min-h-[60vh] max-w-5xl px-4 py-10">
       <slot />
     </main>
