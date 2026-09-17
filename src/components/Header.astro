@@ -1,24 +1,53 @@
 ---
 import { SITE_TITLE, NAV_LINKS } from '../consts';
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
 ---
 
-<header class="border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-50">
+<header class="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/95 backdrop-blur">
   <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-    <a href="/" class="text-lg font-bold text-slate-900">
+    <a href="/" class="flex items-center gap-2 text-lg font-bold text-white">
+      <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="header-disc" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#38bdf8" />
+            <stop offset="1" stop-color="#84cc16" />
+          </linearGradient>
+        </defs>
+        <ellipse cx="14" cy="16" rx="12" ry="5" fill="url(#header-disc)" />
+        <ellipse cx="14" cy="13" rx="12" ry="5" fill="url(#header-disc)" opacity="0.85" />
+      </svg>
       {SITE_TITLE}
     </a>
-    <nav class="hidden gap-6 text-sm font-medium text-slate-700 sm:flex">
+    <nav class="hidden gap-1 text-sm font-medium sm:flex">
       {NAV_LINKS.map((link) => (
-        <a href={link.href} class="hover:text-sky-600">{link.label}</a>
+        <a
+          href={link.href}
+          class={`rounded-full px-3 py-1.5 transition-colors ${
+            isActive(link.href)
+              ? 'bg-gradient-to-r from-sky-500 to-lime-500 text-white'
+              : 'text-slate-300 hover:bg-white/10 hover:text-white'
+          }`}
+        >
+          {link.label}
+        </a>
       ))}
     </nav>
     <details class="sm:hidden">
-      <summary class="cursor-pointer list-none rounded-md border border-slate-300 px-3 py-1 text-sm">
+      <summary class="cursor-pointer list-none rounded-full border border-slate-600 px-3 py-1 text-sm text-slate-200">
         メニュー
       </summary>
-      <nav class="absolute right-4 mt-2 flex w-48 flex-col gap-1 rounded-md border border-slate-200 bg-white p-3 shadow-lg">
+      <nav class="absolute right-4 mt-2 flex w-48 flex-col gap-1 rounded-md border border-slate-700 bg-slate-800 p-3 shadow-lg">
         {NAV_LINKS.map((link) => (
-          <a href={link.href} class="rounded px-2 py-1 text-sm text-slate-700 hover:bg-slate-100">
+          <a
+            href={link.href}
+            class={`rounded px-2 py-1 text-sm ${
+              isActive(link.href)
+                ? 'bg-gradient-to-r from-sky-500 to-lime-500 text-white'
+                : 'text-slate-200 hover:bg-slate-700'
+            }`}
+          >
             {link.label}
           </a>
         ))}
