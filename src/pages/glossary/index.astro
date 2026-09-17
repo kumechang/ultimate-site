@@ -18,7 +18,10 @@ const rendered = await Promise.all(
   <dl class="prose-article mt-8">
     {rendered.map(({ term, Content }) => (
       <div id={term.id} class="mb-6 scroll-mt-24 border-b border-slate-100 pb-6">
-        <dt class="text-lg font-semibold text-slate-900">{term.data.term}</dt>
+        <dt class="text-lg font-semibold text-slate-900">
+          {term.data.term}
+          {term.data.reading && <span class="ml-2 text-xs font-normal text-slate-400">（{term.data.reading}）</span>}
+        </dt>
         <dd class="mt-1">
           <Content />
         </dd>

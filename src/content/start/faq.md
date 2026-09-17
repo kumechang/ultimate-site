@@ -3,7 +3,11 @@ title: アルティメット初心者のよくある質問【Q&A】
 description: 運動未経験でも大丈夫か、体育会系の雰囲気か、男女一緒にプレーできるかなど、これから始める方が気になる疑問にQ&A形式で答えます。
 pubDate: 2026-09-16
 order: 5
+heroImage: /images/photos/community-group-grass.avif
+heroImageAlt: 公園で楽しそうに集まる仲間たち
 ---
+
+これからアルティメットを始めようとしている方が気になる疑問に、Q&A形式でまとめて答えます。
 
 ## Q. 運動未経験・初心者でも大丈夫？
 
