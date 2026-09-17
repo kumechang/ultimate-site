@@ -3,6 +3,8 @@ title: 大学サークル・社会人チームの探し方【個人参加（個�
 description: アルティメットの大学サークルや社会人チームの探し方、初心者でも個人で参加しやすい「個アル」について解説します。
 pubDate: 2026-09-16
 order: 2
+heroImage: /images/photos/community-group-grass.avif
+heroImageAlt: 芝生の上で集まるチームメンバー
 ---
 
 ## 大学サークル

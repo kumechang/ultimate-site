@@ -3,6 +3,8 @@ title: アルティメットを体験できる場所の探し方
 description: 日本フライングディスク協会（JFDA）や地方協会など、アルティメットを体験できる場所の探し方を紹介します。
 pubDate: 2026-09-16
 order: 1
+heroImage: /images/photos/disc-throw-hold.avif
+heroImageAlt: フィールドでディスクを構える人
 ---
 
 ## 日本フライングディスク協会（JFDA）

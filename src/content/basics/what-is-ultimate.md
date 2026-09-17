@@ -3,6 +3,8 @@ title: アルティメットとは？初心者向けに競技の魅力とルー�
 description: フライングディスクを使ったゴール型スポーツ「アルティメット」の概要と、最大の特徴であるSOTG（スピリット・オブ・ザ・ゲーム）、歴史について初心者にもわかりやすく解説します。
 pubDate: 2026-09-16
 order: 1
+heroImage: /images/photos/ultimate-action-01.avif
+heroImageAlt: アルティメットの試合中の1コマ
 ---
 
 ## アルティメットとはどんなスポーツ？

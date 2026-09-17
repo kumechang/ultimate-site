@@ -3,6 +3,8 @@ title: アルティメットの基本ルールを徹底解説【初心者向け�
 description: コートの規格（サイズ）やプレイ人数、得点方法、ディスクの進め方、ターンオーバーの条件など、アルティメットの基本ルールを初心者にもわかりやすくまとめました。
 pubDate: 2026-09-16
 order: 2
+heroImage: /images/photos/ultimate-game-02.avif
+heroImageAlt: アルティメットの試合の様子
 ---
 
 ## コートの規格とプレイ人数

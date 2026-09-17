@@ -8,9 +8,11 @@ interface Props {
   pubDate: Date;
   updatedDate?: Date;
   breadcrumb: { label: string; href: string }[];
+  heroImage?: string;
+  heroImageAlt?: string;
 }
 
-const { title, description, pubDate, updatedDate, breadcrumb } = Astro.props;
+const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt } = Astro.props;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -56,6 +58,14 @@ const breadcrumbJsonLd = {
     <p class="!mt-2 text-sm text-slate-500">
       更新日: {(updatedDate ?? pubDate).toLocaleDateString('ja-JP')}
     </p>
+    {heroImage && (
+      <img
+        src={heroImage}
+        alt={heroImageAlt ?? title}
+        loading="eager"
+        class="not-prose my-6 aspect-video w-full rounded-lg object-cover"
+      />
+    )}
     <slot />
   </article>
 </BaseLayout>

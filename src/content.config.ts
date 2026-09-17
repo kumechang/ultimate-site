@@ -8,6 +8,8 @@ const articleSchema = z.object({
   updatedDate: z.coerce.date().optional(),
   order: z.number().default(0),
   draft: z.boolean().default(false),
+  heroImage: z.string().optional(),
+  heroImageAlt: z.string().optional(),
 });
 
 const basics = defineCollection({

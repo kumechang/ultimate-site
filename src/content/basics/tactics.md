@@ -3,6 +3,8 @@ title: アルティメットの戦術【スタックオフェンス・ゾーン�
 description: バーティカルスタック、ホリゾンタルスタックなどのオフェンス戦術と、マンツーマン・ゾーンディフェンスの基本を解説します。
 pubDate: 2026-09-16
 order: 4
+heroImage: /images/photos/ultimate-game-04.avif
+heroImageAlt: アルティメットの試合中のフォーメーション
 ---
 
 ## スタックオフェンス
