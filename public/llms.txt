@@ -1,0 +1,33 @@
+# アルティメットナビ
+
+> アルティメット（フライングディスク競技）の総合情報サイト。ルール・戦術の解説から、ディスクやシューズなどおすすめギアの選び方まで、初心者から経験者まで役立つ情報をまとめています。
+
+## 基礎知識
+- [アルティメットとは？](https://ultimate-navi.com/basics/what-is-ultimate/): 競技概要、男女混合の特徴、SOTG（スピリット・オブ・ザ・ゲーム）、歴史を解説
+- [アルティメットとディスクゴルフの違い](https://ultimate-navi.com/basics/vs-disc-golf/): 競技形式・ルール・道具を比較
+- [基本ルール](https://ultimate-navi.com/basics/rules/): コート規格、得点方法、試合の終わり方、ターンオーバー条件
+- [ポジション](https://ultimate-navi.com/basics/positions/): ハンドラー・カッター・ディープの役割
+- [戦術](https://ultimate-navi.com/basics/tactics/): スタックオフェンス、ゾーンディフェンス
+
+## ギア選び
+- [ディスクの選び方](https://ultimate-navi.com/gear/disc/)
+- [スパイクの選び方](https://ultimate-navi.com/gear/shoes/)
+- [グローブの選び方](https://ultimate-navi.com/gear/gloves/)
+- [ウェアの選び方](https://ultimate-navi.com/gear/apparel/)
+- [便利グッズまとめ](https://ultimate-navi.com/gear/accessories/)
+
+## 技術
+- [3大スロー解説](https://ultimate-navi.com/skills/throws/): バックハンド・フリック・ハンマーの投げ方
+
+## 始め方
+- [体験できる場所の探し方](https://ultimate-navi.com/start/where-to-play/)
+- [大学サークル・社会人チームの探し方](https://ultimate-navi.com/start/find-team/)
+- [費用の目安](https://ultimate-navi.com/start/cost/): サークル年会費・初期ギア代
+- [年間スケジュール](https://ultimate-navi.com/start/annual-schedule/)
+- [初心者のよくある質問](https://ultimate-navi.com/start/faq/): 運動未経験・男女混合・怪我のリスクなど
+
+## 用語集
+- [アルティメット用語集](https://ultimate-navi.com/glossary/): ストールカウント、レイアウトなど12用語を解説
+
+## このサイトについて
+- [運営方針・アフィリエイト開示](https://ultimate-navi.com/about/)
