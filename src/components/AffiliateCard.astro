@@ -7,7 +7,14 @@ interface Props {
   tier?: string;
 }
 
-const { name, point, amazonUrl, tier } = Astro.props;
+const { name, point, amazonUrl, tier, imageAlt } = Astro.props;
+
+// dp/ の後の10桁ASINから商品画像URLを組み立てる（Amazon非公式パターンのため画像が取得できない商品もある）
+const asinMatch = amazonUrl.match(/\/dp\/([A-Z0-9]{10})/);
+const asin = asinMatch ? asinMatch[1] : null;
+const imageUrl = asin
+  ? `https://images-na.ssl-images-amazon.com/images/P/${asin}.09.MZZZZZZZ.jpg`
+  : null;
 ---
 
 <div class="not-prose my-6 rounded-lg border border-slate-200 p-4 shadow-sm">
@@ -16,14 +23,29 @@ const { name, point, amazonUrl, tier } = Astro.props;
       {tier}
     </span>
   )}
-  <p class="font-semibold text-slate-900">{name}</p>
-  <p class="mt-1 text-sm text-slate-600">{point}</p>
-  <a
-    href={amazonUrl}
-    target="_blank"
-    rel="sponsored noopener"
-    class="mt-3 inline-block rounded-md bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-600"
-  >
-    Amazonで詳細を見る
-  </a>
+  <div class="flex gap-4">
+    {imageUrl && (
+      <img
+        src={imageUrl}
+        alt={imageAlt ?? name}
+        loading="lazy"
+        width="80"
+        height="80"
+        class="h-20 w-20 flex-none rounded-md border border-slate-100 bg-white object-contain p-1"
+        onerror="this.remove()"
+      />
+    )}
+    <div class="min-w-0 flex-1">
+      <p class="font-semibold text-slate-900">{name}</p>
+      <p class="mt-1 text-sm text-slate-600">{point}</p>
+      <a
+        href={amazonUrl}
+        target="_blank"
+        rel="sponsored noopener"
+        class="mt-3 inline-block rounded-md bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-600"
+      >
+        Amazonで詳細を見る
+      </a>
+    </div>
+  </div>
 </div>
