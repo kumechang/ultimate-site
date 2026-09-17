@@ -14,6 +14,5 @@ export const NAV_LINKS = [
 export const AFFILIATE_DISCLOSURE =
   '当サイトはAmazonアソシエイト・プログラムを含む、複数のアフィリエイトプログラムに参加しています。当サイトの記事内で紹介する商品を通じて商品購入がされた場合、Amazon.co.jpより収益を受け取ることがあります。';
 
-// Google Analytics 4 の測定ID（例: 'G-XXXXXXXXXX'）。
-// 空文字のままだとGA4スクリプトは読み込まれない。GA4プロパティ作成後にIDを設定すること。
-export const GA_MEASUREMENT_ID = '';
+// Google Analytics 4 の測定ID。
+export const GA_MEASUREMENT_ID = 'G-MXSYJKDR93';
