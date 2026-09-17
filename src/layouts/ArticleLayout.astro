@@ -10,9 +10,11 @@ interface Props {
   breadcrumb: { label: string; href: string }[];
   heroImage?: string;
   heroImageAlt?: string;
+  faqItems?: { question: string; answer: string }[];
 }
 
-const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt } = Astro.props;
+const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, faqItems } =
+  Astro.props;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -34,11 +36,22 @@ const breadcrumbJsonLd = {
     item: new URL(item.href, Astro.site).toString(),
   })),
 };
+
+const faqJsonLd = faqItems && {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
 <BaseLayout title={title} description={description} type="article">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
   <nav class="mb-6 text-sm text-slate-500" aria-label="breadcrumb">
     {breadcrumb.map((item, i) => (
