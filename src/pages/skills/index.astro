@@ -16,9 +16,9 @@ const entries = (await getCollection('skills', ({ data }) => !data.draft)).sort(
 
   <ul class="mt-8 grid gap-4 sm:grid-cols-2">
     {entries.map((entry) => (
-      <li class="rounded-lg border border-slate-200 p-5 hover:border-sky-300 hover:shadow-sm">
+      <li class="rounded-lg border border-slate-200 p-5 hover:border-slate-900 hover:shadow-sm">
         <a href={`/skills/${entry.id}/`} class="block">
-          <h2 class="font-semibold text-slate-900">{entry.data.title}</h2>
+          <h2 class="section-heading font-semibold text-slate-900">{entry.data.title}</h2>
           <p class="mt-2 text-sm text-slate-600">{entry.data.description}</p>
         </a>
       </li>
