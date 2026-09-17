@@ -28,6 +28,12 @@ const sections = [
     desc: '体験できる場所、サークル・チーム・個アルの探し方。',
   },
 ];
+const gamePhotos = [
+  { src: '/images/photos/ultimate-game-01.avif', alt: 'アルティメットの試合中、ディスクをパスする選手' },
+  { src: '/images/photos/disc-throw-jump.avif', alt: 'ジャンプしてディスクをキャッチする選手' },
+  { src: '/images/photos/ultimate-team-02.avif', alt: 'チームで集まるアルティメットプレイヤーたち' },
+  { src: '/images/photos/ultimate-game-03.avif', alt: 'アルティメットの試合中の攻防' },
+];
 ---
 
 <BaseLayout title="初心者から経験者まで使えるアルティメット総合ガイド">
@@ -64,6 +70,22 @@ const sections = [
             <h3 class="text-lg font-semibold text-slate-900">{s.title}</h3>
             <p class="mt-2 text-sm text-slate-600">{s.desc}</p>
           </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-slate-900">実際のプレーの様子</h2>
+    <ul class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {gamePhotos.map((p) => (
+        <li>
+          <img
+            src={p.src}
+            alt={p.alt}
+            loading="lazy"
+            class="aspect-square w-full rounded-lg object-cover"
+          />
         </li>
       ))}
     </ul>
