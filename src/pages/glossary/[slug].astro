@@ -13,11 +13,22 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const title = `${entry.data.term}とは？意味をわかりやすく解説`;
+const description =
+  entry.data.description ?? `アルティメットの用語「${entry.data.term}」の意味をわかりやすく解説します。`;
+
+const definedTermJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: entry.data.term,
+  description,
+  inDefinedTermSet: new URL('/glossary/', Astro.site).toString(),
+  url: new URL(`/glossary/${entry.id}/`, Astro.site).toString(),
+};
 ---
 
 <ArticleLayout
   title={title}
-  description={entry.data.description ?? `アルティメットの用語「${entry.data.term}」の意味をわかりやすく解説します。`}
+  description={description}
   pubDate={new Date('2026-09-16')}
   breadcrumb={[
     { label: 'トップ', href: '/' },
@@ -25,6 +36,7 @@ const title = `${entry.data.term}とは？意味をわかりやすく解説`;
     { label: entry.data.term, href: `/glossary/${entry.id}/` },
   ]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(definedTermJsonLd)} />
   <Content />
   <p>
     他の用語もあわせて確認したい場合は<a href="/glossary/">アルティメット用語集</a>をご覧ください。
