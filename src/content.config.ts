@@ -40,6 +40,7 @@ const glossary = defineCollection({
   schema: z.object({
     term: z.string(),
     reading: z.string().optional(),
+    description: z.string().optional(),
     order: z.number().default(0),
   }),
 });
