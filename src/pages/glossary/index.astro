@@ -20,7 +20,7 @@ const rendered = await Promise.all(
       <div id={term.id} class="mb-6 scroll-mt-24 border-b border-slate-100 pb-6">
         <dt class="text-lg font-semibold text-slate-900">
           <a href={`/glossary/${term.id}/`} class="hover:text-sky-600">{term.data.term}</a>
-          {term.data.reading && <span class="ml-2 text-xs font-normal text-slate-400">（{term.data.reading}）</span>}
+          {term.data.reading && <span class="ml-2 text-xs font-normal text-slate-600">（{term.data.reading}）</span>}
         </dt>
         <dd class="mt-1">
           <Content />
