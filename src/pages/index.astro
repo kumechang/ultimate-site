@@ -66,12 +66,14 @@ const heroPhotos = [
   </section>
 
   <section class="mt-16">
-    <h2 class="text-2xl font-bold text-slate-900">サイトのコンテンツ</h2>
+    <h2 class="section-heading text-2xl font-bold text-slate-900">サイトのコンテンツ</h2>
     <ul class="mt-6 grid gap-5 sm:grid-cols-2">
       {sections.map((s) => (
-        <li class="rounded-xl border border-slate-200 p-6 hover:border-sky-300 hover:shadow-sm">
+        <li class="rounded-xl border border-slate-200 p-6 hover:border-slate-900 hover:shadow-sm">
           <a href={s.href}>
-            <h3 class="text-lg font-semibold text-slate-900">{s.title}</h3>
+            <h3 class="relative pl-4 text-lg font-semibold text-slate-900 before:absolute before:left-0 before:top-1/2 before:h-2 before:w-2 before:-translate-y-1/2 before:rounded-sm before:bg-slate-900">
+              {s.title}
+            </h3>
             <p class="mt-2 text-sm text-slate-600">{s.desc}</p>
           </a>
         </li>
