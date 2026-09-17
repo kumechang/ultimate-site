@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('glossary');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const title = `${entry.data.term}とは？意味をわかりやすく解説`;
+---
+
+<ArticleLayout
+  title={title}
+  description={entry.data.description ?? `アルティメットの用語「${entry.data.term}」の意味をわかりやすく解説します。`}
+  pubDate={new Date('2026-09-16')}
+  breadcrumb={[
+    { label: 'トップ', href: '/' },
+    { label: '用語集', href: '/glossary/' },
+    { label: entry.data.term, href: `/glossary/${entry.id}/` },
+  ]}
+>
+  <Content />
+  <p>
+    他の用語もあわせて確認したい場合は<a href="/glossary/">アルティメット用語集</a>をご覧ください。
+  </p>
+</ArticleLayout>
