@@ -2,6 +2,7 @@
 import Seo from '../components/Seo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE_TITLE, GA_MEASUREMENT_ID } from '../consts';
 import '../styles/global.css';
 
 interface Props {
@@ -13,6 +14,13 @@ interface Props {
 }
 
 const { title, description, image, noindex, type = 'website' } = Astro.props;
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_TITLE,
+  url: Astro.site?.toString(),
+};
 ---
 
 <!doctype html>
@@ -23,6 +31,26 @@ const { title, description, image, noindex, type = 'website' } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <Seo title={title} description={description} image={image} noindex={noindex} type={type} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+    {GA_MEASUREMENT_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+        <script define:vars={{ GA_MEASUREMENT_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', GA_MEASUREMENT_ID);
+        </script>
+      </>
+    )}
+    <script>
+      document.addEventListener('click', (event) => {
+        const link = event.target.closest && event.target.closest('a[href*="amazon.co.jp"]');
+        if (link && typeof window.gtag === 'function') {
+          window.gtag('event', 'amazon_link_click', { link_url: link.href });
+        }
+      });
+    </script>
   </head>
   <body>
     <Header />
