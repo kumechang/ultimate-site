@@ -1,5 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ultimateGame01 from '../assets/hero/ultimate-game-01.avif';
+import ultimateGame02 from '../assets/hero/ultimate-game-02.avif';
+import ultimateGame03 from '../assets/hero/ultimate-game-03.avif';
+import ultimateGame04 from '../assets/hero/ultimate-game-04.avif';
+import ultimateTeam02 from '../assets/hero/ultimate-team-02.avif';
+import ultimateAction01 from '../assets/hero/ultimate-action-01.avif';
+import discThrowJump from '../assets/hero/disc-throw-jump.avif';
+import discCloseup02 from '../assets/hero/disc-closeup-02.avif';
 
 const sections = [
   {
@@ -29,14 +38,14 @@ const sections = [
   },
 ];
 const heroPhotos = [
-  '/images/photos/ultimate-game-01.avif',
-  '/images/photos/ultimate-game-02.avif',
-  '/images/photos/ultimate-game-03.avif',
-  '/images/photos/ultimate-game-04.avif',
-  '/images/photos/ultimate-team-02.avif',
-  '/images/photos/ultimate-action-01.avif',
-  '/images/photos/disc-throw-jump.avif',
-  '/images/photos/disc-closeup-02.avif',
+  ultimateGame01,
+  ultimateGame02,
+  ultimateGame03,
+  ultimateGame04,
+  ultimateTeam02,
+  ultimateAction01,
+  discThrowJump,
+  discCloseup02,
 ];
 ---
 
@@ -47,7 +56,15 @@ const heroPhotos = [
       aria-hidden="true"
     >
       {heroPhotos.map((src) => (
-        <img src={src} alt="" loading="eager" class="h-full w-full object-cover opacity-80" />
+        <Image
+          src={src}
+          alt=""
+          loading="eager"
+          widths={[430, 860]}
+          sizes="(min-width: 640px) 25vw, 50vw"
+          quality={60}
+          class="h-full w-full object-cover opacity-80"
+        />
       ))}
     </div>
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-slate-900/20"></div>
