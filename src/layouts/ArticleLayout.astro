@@ -11,9 +11,10 @@ interface Props {
   heroImage?: string;
   heroImageAlt?: string;
   faqItems?: { question: string; answer: string }[];
+  summary?: string[];
 }
 
-const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, faqItems } =
+const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, faqItems, summary } =
   Astro.props;
 
 const jsonLd = {
@@ -71,6 +72,19 @@ const faqJsonLd = faqItems && {
     <p class="!mt-2 text-sm text-slate-500">
       更新日: {(updatedDate ?? pubDate).toLocaleDateString('ja-JP')}
     </p>
+    {summary && summary.length > 0 && (
+      <div class="not-prose my-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
+        <p class="text-sm font-semibold text-slate-900">この記事の要点</p>
+        <ul class="mt-2 space-y-1 text-sm text-slate-700">
+          {summary.map((point) => (
+            <li class="flex gap-2">
+              <span aria-hidden="true">・</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
     {heroImage && (
       <img
         src={heroImage}

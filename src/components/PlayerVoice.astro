@@ -1,0 +1,14 @@
+---
+interface Props {
+  attribute: string;
+  quote: string;
+}
+
+const { attribute, quote } = Astro.props;
+---
+
+<figure class="not-prose my-6 rounded-lg border-l-4 border-sky-500 bg-sky-50 p-4">
+  <p class="text-xs font-semibold text-sky-700">経験者の声（インタビュー）</p>
+  <blockquote class="mt-2 text-sm text-slate-800">「{quote}」</blockquote>
+  <figcaption class="mt-2 text-xs text-slate-600">{attribute}</figcaption>
+</figure>

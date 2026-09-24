@@ -5,6 +5,10 @@ pubDate: 2026-09-16
 order: 2
 heroImage: /images/photos/community-group-grass.avif
 heroImageAlt: 芝生の上で集まるチームメンバー
+summary:
+  - "大学生は大学のアルティメットサークルの新歓情報をチェックするのが基本"
+  - "社会人は各地域の社会人チームに参加できる"
+  - "チームに所属せず参加できる「個アル（個人参加型）」も初心者に人気"
 ---
 
 ## 大学サークル
