@@ -5,6 +5,10 @@ pubDate: 2026-09-16
 order: 1
 heroImage: /images/photos/disc-throw-hold.avif
 heroImageAlt: フィールドでディスクを構える人
+summary:
+  - "体験できる場所を探すなら、まずJFDA（日本フライングディスク協会）の情報をチェック"
+  - "都道府県ごとの地方協会や地域サークルも活動している"
+  - "「（地域名） アルティメット 体験」で検索するのも有効"
 ---
 
 ## 日本フライングディスク協会（JFDA）

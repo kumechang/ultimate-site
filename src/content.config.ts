@@ -10,6 +10,8 @@ const articleSchema = z.object({
   draft: z.boolean().default(false),
   heroImage: z.string().optional(),
   heroImageAlt: z.string().optional(),
+  // 記事冒頭に表示する「結論ファースト」の要点(2〜4個)
+  summary: z.array(z.string()).optional(),
 });
 
 const basics = defineCollection({
