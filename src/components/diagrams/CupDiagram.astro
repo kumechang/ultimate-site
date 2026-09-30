@@ -1,0 +1,48 @@
+---
+// カップ（ゾーンディフェンスで前線の数人がディスク保持者を囲む守り方）の図解
+---
+
+<figure class="not-prose my-6">
+  <svg
+    viewBox="0 0 400 280"
+    role="img"
+    aria-labelledby="cup-diagram-title cup-diagram-desc"
+    class="mx-auto w-full max-w-md"
+  >
+    <title id="cup-diagram-title">カップの図解</title>
+    <desc id="cup-diagram-desc">
+      ディフェンス3人がディスク保持者を前方から囲む「カップ」と、後方をカバーする「ディープ」の配置を示した図。
+    </desc>
+
+    <rect x="10" y="10" width="380" height="260" rx="10" class="fill-emerald-50 stroke-emerald-200" stroke-width="2" />
+
+    <!-- カップを示す弧 -->
+    <path
+      d="M 150 165 A 60 60 0 0 1 250 165"
+      class="fill-none stroke-slate-300"
+      stroke-width="18"
+      stroke-linecap="round"
+    />
+
+    <!-- カップ（3人） -->
+    <circle cx="150" cy="160" r="13" class="fill-slate-800" />
+    <circle cx="200" cy="130" r="13" class="fill-slate-800" />
+    <circle cx="250" cy="160" r="13" class="fill-slate-800" />
+
+    <!-- ディスク保持者 -->
+    <circle cx="200" cy="210" r="14" class="fill-sky-600" />
+    <text x="200" y="240" text-anchor="middle" class="fill-slate-700 text-[11px] font-semibold">
+      ディスク保持者
+    </text>
+
+    <!-- ディープ（2人） -->
+    <circle cx="110" cy="55" r="13" class="fill-slate-500" />
+    <circle cx="290" cy="55" r="13" class="fill-slate-500" />
+
+    <text x="200" y="105" text-anchor="middle" class="fill-slate-700 text-[13px] font-semibold">カップ</text>
+    <text x="200" y="35" text-anchor="middle" class="fill-slate-500 text-[12px] font-semibold">ディープ（後方カバー）</text>
+  </svg>
+  <figcaption class="mt-2 text-center text-xs text-slate-500">
+    前線の3人がディスク保持者を囲む「カップ」と、後方をカバーする「ディープ」の役割分担イメージ
+  </figcaption>
+</figure>

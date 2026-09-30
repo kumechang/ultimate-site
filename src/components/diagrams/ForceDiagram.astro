@@ -1,0 +1,55 @@
+---
+// フォース（ディフェンスがオフェンスの投げる方向を片側に限定させる守り方）の図解
+---
+
+<figure class="not-prose my-6">
+  <svg
+    viewBox="0 0 400 230"
+    role="img"
+    aria-labelledby="force-diagram-title force-diagram-desc"
+    class="mx-auto w-full max-w-md"
+  >
+    <title id="force-diagram-title">フォースの図解</title>
+    <desc id="force-diagram-desc">
+      マーカーがスロワーの片側に立つことで、投げる方向を反対側に限定させる様子を示した図。
+    </desc>
+
+    <rect x="10" y="10" width="380" height="210" rx="10" class="fill-emerald-50 stroke-emerald-200" stroke-width="2" />
+
+    <line x1="200" y1="10" x2="200" y2="220" class="stroke-emerald-200" stroke-width="1.5" stroke-dasharray="4 4" />
+
+    <!-- ブロックされる側（マーカーが塞ぐ半面） -->
+    <path d="M 230 115 L 30 30 A 130 130 0 0 1 30 200 Z" class="fill-slate-900/5" />
+
+    <!-- 投げやすい側への矢印 -->
+    <path
+      d="M 245 115 C 300 90 340 90 375 65"
+      class="fill-none stroke-sky-600"
+      stroke-width="3"
+      marker-end="url(#force-arrow)"
+    />
+
+    <defs>
+      <marker id="force-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 Z" class="fill-sky-600" />
+      </marker>
+    </defs>
+
+    <!-- マーカー -->
+    <circle cx="150" cy="115" r="14" class="fill-slate-800" />
+    <text x="150" y="150" text-anchor="middle" class="fill-slate-700 text-[11px] font-semibold">マーカー</text>
+
+    <!-- スロワー -->
+    <circle cx="230" cy="115" r="14" class="fill-sky-600" />
+    <text x="230" y="150" text-anchor="middle" class="fill-slate-700 text-[11px] font-semibold">スロワー</text>
+
+    <text x="70" y="60" text-anchor="middle" class="fill-slate-500 text-[11px]">投げにくい側</text>
+    <text x="70" y="76" text-anchor="middle" class="fill-slate-500 text-[11px]">（ブロックされている）</text>
+
+    <text x="310" y="55" text-anchor="middle" class="fill-sky-700 text-[12px] font-semibold">フォースの方向</text>
+    <text x="310" y="71" text-anchor="middle" class="fill-sky-700 text-[11px]">（投げやすい側）</text>
+  </svg>
+  <figcaption class="mt-2 text-center text-xs text-slate-500">
+    マーカーがスロワーの片側に立ち、反対側への投球を促す「フォース」のイメージ図
+  </figcaption>
+</figure>
