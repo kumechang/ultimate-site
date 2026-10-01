@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-labelledby="hstack-diagram-title hstack-diagram-desc">
+  <title id="hstack-diagram-title">ホリゾンタルスタックの図解</title>
+  <desc id="hstack-diagram-desc">コート全体に選手が横一列に広がり、1人が縦にカットしてパスを受ける様子を示した図。</desc>
+
+  <rect x="10" y="10" width="380" height="240" rx="10" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="2" />
+
+  <!-- カットの軌道 -->
+  <path d="M 320 103 C 322 125 322 140 320 147" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#hstack-cut-arrow)" />
+
+  <!-- パス -->
+  <path d="M 212 185 C 260 175 300 165 316 158" fill="none" stroke="#0284c7" stroke-width="3" marker-end="url(#hstack-pass-arrow)" />
+
+  <defs>
+    <marker id="hstack-cut-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8" />
+    </marker>
+    <marker id="hstack-pass-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#0284c7" />
+    </marker>
+  </defs>
+
+  <!-- ホリゾンタルスタック（横一列） -->
+  <circle cx="80" cy="90" r="13" fill="#1e293b" />
+  <circle cx="160" cy="90" r="13" fill="#1e293b" />
+  <circle cx="240" cy="90" r="13" fill="#1e293b" />
+  <circle cx="320" cy="90" r="13" fill="#1e293b" />
+  <text x="200" y="55" text-anchor="middle" fill="#334155" font-size="12" font-weight="600" font-family="sans-serif">
+    ホリゾンタルスタック（横一列）
+  </text>
+
+  <!-- カット後の選手（空いたスペース） -->
+  <circle cx="320" cy="160" r="13" fill="none" stroke="#1e293b" stroke-width="2" stroke-dasharray="3 2" />
+  <text x="320" y="195" text-anchor="middle" fill="#64748b" font-size="11" font-family="sans-serif">カッターの動き</text>
+
+  <!-- スロワー -->
+  <circle cx="200" cy="190" r="14" fill="#0284c7" />
+  <text x="200" y="222" text-anchor="middle" fill="#334155" font-size="11" font-weight="600" font-family="sans-serif">スロワー</text>
+</svg>
