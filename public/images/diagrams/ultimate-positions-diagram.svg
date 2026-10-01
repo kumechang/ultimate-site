@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 220" role="img" aria-labelledby="positions-diagram-title positions-diagram-desc">
+  <title id="positions-diagram-title">ポジションの配置イメージ図</title>
+  <desc id="positions-diagram-desc">
+    ハンドラー、ミドル/カッター、ディープが攻撃方向に向かっておおよそどのあたりに位置するかを示したイメージ図。
+  </desc>
+
+  <rect x="10" y="10" width="420" height="170" rx="10" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="2" />
+
+  <!-- 攻撃方向 -->
+  <path d="M 40 198 L 400 198" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#attack-arrow)" />
+  <defs>
+    <marker id="attack-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+  <text x="220" y="213" text-anchor="middle" fill="#64748b" font-size="11" font-family="sans-serif">攻撃方向</text>
+
+  <!-- ハンドラー -->
+  <circle cx="70" cy="70" r="12" fill="#0284c7" />
+  <circle cx="70" cy="120" r="12" fill="#0284c7" />
+  <text x="70" y="155" text-anchor="middle" fill="#334155" font-size="12" font-weight="600" font-family="sans-serif">ハンドラー</text>
+
+  <!-- ミドル/カッター -->
+  <circle cx="220" cy="55" r="12" fill="#1e293b" />
+  <circle cx="220" cy="135" r="12" fill="#1e293b" />
+  <text x="220" y="155" text-anchor="middle" fill="#334155" font-size="12" font-weight="600" font-family="sans-serif">ミドル/カッター</text>
+
+  <!-- ディープ -->
+  <circle cx="365" cy="95" r="12" fill="#65a30d" />
+  <text x="365" y="155" text-anchor="middle" fill="#334155" font-size="12" font-weight="600" font-family="sans-serif">ディープ</text>
+</svg>
