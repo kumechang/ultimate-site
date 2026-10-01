@@ -11,6 +11,11 @@ summary:
   - "ゾーンディフェンスは強風時など天候によって有効になる場面が多い"
 ---
 
+import ForceDiagram from '../../components/diagrams/ForceDiagram.astro';
+import CupDiagram from '../../components/diagrams/CupDiagram.astro';
+import VerticalStackDiagram from '../../components/diagrams/VerticalStackDiagram.astro';
+import HorizontalStackDiagram from '../../components/diagrams/HorizontalStackDiagram.astro';
+
 ## スタックオフェンス
 
 味方の選手が縦や横に並ぶ[「スタック（列）」](/glossary/stack/)を作り、規則的にスペースを空けながら攻める戦術です。
@@ -19,9 +24,13 @@ summary:
 
 コート中央に縦一列に選手が並び、1人ずつサイドスペースへ動いてパスを受ける古典的な戦術。シンプルで初心者チームでも取り組みやすいのが特徴です。
 
+<VerticalStackDiagram />
+
 ### ホリゾンタルスタック
 
 選手が横一列に広がり、コート全体を広く使う戦術。個々の1対1の勝負を作りやすく、運動量とスキルのあるチームで採用されることが多い戦術です。
+
+<HorizontalStackDiagram />
 
 ## マンツーマンディフェンスの基本
 
@@ -34,5 +43,13 @@ summary:
 - **強風時**など、ロングスローが不安定になる状況で特に有効
 - 相手のミスを誘発し、[ターンオーバー](/glossary/turnover/)からの得点を狙う
 - [フォース](/glossary/force/)をかける方向をチームで統一し、[カップ](/glossary/cup/)（前線でプレッシャーをかける選手たち）とディープを守る選手で役割分担する
+
+<ForceDiagram />
+
+マーカー（マークしているディフェンス）がスロワーの片側に立つことで、投げる方向を反対側に限定させます。チーム全体でフォースの方向を統一することで、パスコースを予測しやすくなります。
+
+<CupDiagram />
+
+フォースで限定した方向に、前線の数人が「カップ」を作ってプレッシャーをかけ、後方の「ディープ」がロングスローに備えます。
 
 チームの体力やメンバー構成、天候によってオフェンス・ディフェンスの戦術を使い分けるのがアルティメットの奥深さです。それぞれの[ポジションの役割](/basics/positions/)を理解しておくと、戦術の意図もより掴みやすくなります。
