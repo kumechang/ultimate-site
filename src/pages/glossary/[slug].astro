@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const title = `${entry.data.term}とは？意味をわかりやすく解説`;
+const title = `${entry.data.titleTerm ?? entry.data.term}とは？アルティメット用語の意味を解説`;
 const description =
   entry.data.description ?? `アルティメットの用語「${entry.data.term}」の意味をわかりやすく解説します。`;
 
