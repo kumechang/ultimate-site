@@ -41,6 +41,8 @@ const glossary = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/glossary' }),
   schema: z.object({
     term: z.string(),
+    // 長い用語名（例: SOTG（スピリット・オブ・ザ・ゲーム））をページタイトルでは短くしたい場合のみ指定
+    titleTerm: z.string().optional(),
     reading: z.string().optional(),
     description: z.string().optional(),
     order: z.number().default(0),
