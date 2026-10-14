@@ -16,3 +16,7 @@ npm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# 大学サークル候補リストの作業用出力（公開前の確認用。コミットしない）
+circle-candidates*.csv
+__pycache__/
