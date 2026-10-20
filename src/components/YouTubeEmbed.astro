@@ -9,9 +9,12 @@ interface Props {
   channel: string;
   start?: number;
   note?: string;
+  // 一覧ページ用。ページ側で外部送信の注記をまとめて出す前提で、動画ごとの注記を省く
+  compact?: boolean;
+  lang?: string;
 }
 
-const { id, title, channel, start, note } = Astro.props;
+const { id, title, channel, start, note, compact = false, lang } = Astro.props;
 
 if (!/^[\w-]{11}$/.test(id)) {
   throw new Error(`YouTubeEmbed: 動画IDが不正です: "${id}"`);
@@ -22,7 +25,7 @@ const thumbnailUrl = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&hl=ja${start ? `&start=${start}` : ''}`;
 ---
 
-<figure class="not-prose my-6">
+<figure class={compact ? 'not-prose m-0' : 'not-prose my-6'}>
   <div class="relative aspect-video overflow-hidden rounded-lg border border-slate-200 bg-slate-900">
     <a
       href={watchUrl}
@@ -41,7 +44,7 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsi
         onerror="this.remove()"
         class="absolute inset-0 h-full w-full object-cover"
       />
-      <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent px-4 pb-3 pt-10">
+      <span aria-hidden="true" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent px-4 pb-3 pt-10">
         <span class="line-clamp-2 block text-sm font-semibold sm:text-base">{title}</span>
         <span class="mt-0.5 block text-xs text-slate-200">{channel}</span>
       </span>
@@ -51,17 +54,17 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsi
       >
         <svg viewBox="0 0 24 24" class="ml-0.5 h-6 w-6 fill-current"><path d="M8 5v14l11-7z"></path></svg>
       </span>
-      <span class="sr-only">（クリックでYouTubeの動画プレーヤーを表示）</span>
+      <span class="sr-only">{title}（{channel}）：クリックでYouTubeの動画プレーヤーを表示</span>
     </a>
   </div>
   <figcaption class="mt-2 space-y-1 text-xs leading-relaxed text-slate-600">
     <p>
-      {channel}「{title}」 ・
-      <a href={watchUrl} target="_blank" rel="noopener" class="text-sky-700 underline">YouTubeで見る</a>
+      {channel}「{title}」{lang && <span class="ml-1 rounded border border-slate-300 px-1 text-slate-600">{lang}</span>} ・
+      <a href={watchUrl} target="_blank" rel="noopener" aria-label={`${title}をYouTubeで見る`} class="text-sky-700 underline">YouTubeで見る</a>
     </p>
-    <p>
+    {!compact && <p>
       この動画の表示・再生にはYouTube（Google）への情報送信を伴います（<a href="/privacy/" class="text-sky-700 underline">プライバシーポリシー</a>）。動画の内容は各投稿者の責任によるもので、当サイトは正確性を保証しません。
-    </p>
+    </p>}
     {note && <p>{note}</p>}
   </figcaption>
 </figure>
@@ -72,6 +75,10 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsi
     const link = (event.target as Element).closest<HTMLAnchorElement>('a[data-yt-embed]');
     if (!link) return;
     event.preventDefault();
+    // 再生中のプレーヤーは常に1つだけ。別の動画を開いたら、前のものはサムネイルに戻す
+    const playing = document.querySelector<HTMLIFrameElement>('iframe[data-yt-frame]');
+    const original = playing && (playing as any)._ytLink;
+    if (playing && original) playing.replaceWith(original);
     const frame = document.createElement('iframe');
     frame.src = link.dataset.ytEmbed!;
     frame.title = link.dataset.ytTitle!;
@@ -79,6 +86,8 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsi
     frame.allowFullscreen = true;
     frame.referrerPolicy = 'strict-origin-when-cross-origin';
     frame.className = 'absolute inset-0 h-full w-full border-0';
+    frame.dataset.ytFrame = '';
+    (frame as any)._ytLink = link;
     link.replaceWith(frame);
     frame.focus();
   });
