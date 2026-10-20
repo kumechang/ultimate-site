@@ -8,6 +8,7 @@
 - [基本ルール](https://ultimate-navi.com/basics/rules/): コート規格、得点方法、試合の終わり方、ターンオーバー条件
 - [ポジション](https://ultimate-navi.com/basics/positions/): ハンドラー・カッター・ディープの役割
 - [戦術](https://ultimate-navi.com/basics/tactics/): スタックオフェンス、ゾーンディフェンス
+- [スーパープレー集](https://ultimate-navi.com/basics/super-plays/): 名場面の動画をジャンル別に紹介。初心者向けの見方ガイド付き
 
 ## ギア選び
 - [ディスクの選び方](https://ultimate-navi.com/gear/disc/)
