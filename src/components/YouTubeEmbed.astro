@@ -1,0 +1,85 @@
+---
+// YouTube動画の「クリックで読み込む」埋め込み。
+// - ページ表示時はサムネイル画像のみYouTube(i.ytimg.com)から読み込む（自サーバーへ複製しない。Refererは送らない）
+// - プレーヤー(youtube-nocookie.com)はクリックするまで読み込まない。差し込んだ後のプレーヤーは改変・オーバーレイしない
+// - JavaScriptが無効でも、通常のYouTubeリンクとして機能する
+interface Props {
+  id: string;
+  title: string;
+  channel: string;
+  start?: number;
+  note?: string;
+}
+
+const { id, title, channel, start, note } = Astro.props;
+
+if (!/^[\w-]{11}$/.test(id)) {
+  throw new Error(`YouTubeEmbed: 動画IDが不正です: "${id}"`);
+}
+
+const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` : ''}`;
+const thumbnailUrl = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&hl=ja${start ? `&start=${start}` : ''}`;
+---
+
+<figure class="not-prose my-6">
+  <div class="relative aspect-video overflow-hidden rounded-lg border border-slate-200 bg-slate-900">
+    <a
+      href={watchUrl}
+      data-yt-embed={embedUrl}
+      data-yt-title={title}
+      class="group absolute inset-0 block text-white focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-sky-400"
+    >
+      <img
+        src={thumbnailUrl}
+        alt=""
+        width="480"
+        height="360"
+        loading="lazy"
+        decoding="async"
+        referrerpolicy="no-referrer"
+        onerror="this.remove()"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent px-4 pb-3 pt-10">
+        <span class="line-clamp-2 block text-sm font-semibold sm:text-base">{title}</span>
+        <span class="mt-0.5 block text-xs text-slate-200">{channel}</span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-slate-900/70 ring-1 ring-white/60 transition-colors group-hover:bg-sky-600"
+      >
+        <svg viewBox="0 0 24 24" class="ml-0.5 h-6 w-6 fill-current"><path d="M8 5v14l11-7z"></path></svg>
+      </span>
+      <span class="sr-only">（クリックでYouTubeの動画プレーヤーを表示）</span>
+    </a>
+  </div>
+  <figcaption class="mt-2 space-y-1 text-xs leading-relaxed text-slate-600">
+    <p>
+      {channel}「{title}」 ・
+      <a href={watchUrl} target="_blank" rel="noopener" class="text-sky-700 underline">YouTubeで見る</a>
+    </p>
+    <p>
+      この動画の表示・再生にはYouTube（Google）への情報送信を伴います（<a href="/privacy/" class="text-sky-700 underline">プライバシーポリシー</a>）。動画の内容は各投稿者の責任によるもので、当サイトは正確性を保証しません。
+    </p>
+    {note && <p>{note}</p>}
+  </figcaption>
+</figure>
+
+<script>
+  document.addEventListener('click', (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = (event.target as Element).closest<HTMLAnchorElement>('a[data-yt-embed]');
+    if (!link) return;
+    event.preventDefault();
+    const frame = document.createElement('iframe');
+    frame.src = link.dataset.ytEmbed!;
+    frame.title = link.dataset.ytTitle!;
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.className = 'absolute inset-0 h-full w-full border-0';
+    link.replaceWith(frame);
+    frame.focus();
+  });
+</script>
