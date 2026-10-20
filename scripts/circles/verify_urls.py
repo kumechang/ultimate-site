@@ -94,19 +94,20 @@ def decode(body, content_type):
 def fetch(url, cache, cache_path):
     """{status, final_url, title, text, error} を返す。取得済み(30日以内)ならキャッシュを使う。"""
     hit = cache.get(url)
-    if hit and (datetime.now() - datetime.fromisoformat(hit["fetched_at"])).days < CACHE_DAYS:
+    if hit and "links" in hit and (datetime.now() - datetime.fromisoformat(hit["fetched_at"])).days < CACHE_DAYS:
         return hit
     host = urlparse(url).netloc
     wait = REQUEST_INTERVAL_SEC - (time.time() - _last_request.get(host, 0))
     if host in _last_request and wait > 0:
         time.sleep(wait)
-    out = {"status": None, "final_url": url, "title": "", "text": "", "error": "", "fetched_at": datetime.now().isoformat()}
+    out = {"status": None, "final_url": url, "title": "", "text": "", "links": [], "error": "", "fetched_at": datetime.now().isoformat()}
     try:
         with open_url(url) as resp:
             html = decode(resp.read(MAX_BYTES), resp.headers.get("Content-Type"))
             out.update(status=resp.status, final_url=resp.geturl())
         title = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
         out["title"] = re.sub(r"\s+", " ", title.group(1)).strip() if title else ""
+        out["links"] = sorted(set(re.findall(r"""(?:href|src)=["']([^"']+)["']""", html)))[:1000]
         out["text"] = re.sub(r"\s+", " ", re.sub(r"<script.*?</script>|<style.*?</style>|<[^>]+>", " ", html, flags=re.S | re.I))[:200_000]
     except urllib.error.HTTPError as e:
         out["status"] = e.code
@@ -116,6 +117,26 @@ def fetch(url, cache, cache_path):
     cache[url] = out
     cache_path.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
     return out
+
+
+def canon_url(url):
+    """リンク照合用にURLを正規化する（スキーム・www・末尾スラッシュ・クエリ・twitter→xの差を吸収）。"""
+    u = re.sub(r"^https?://", "", url.strip().lower()).split("#")[0].split("?")[0]
+    u = re.sub(r"^(www\.|m\.|mobile\.)", "", u).replace("twitter.com/", "x.com/")
+    return u.rstrip("/")
+
+
+def check_sns(row, links):
+    """sns_urls の各URLが、公式ページ内のリンクに含まれるか確認する。"""
+    page_links = {canon_url(l) for l in links if l.startswith(("http://", "https://", "//"))}
+    page_links |= {canon_url("https:" + l) for l in links if l.startswith("//")}
+    found, missing = [], []
+    for part in (row.get("sns_urls") or "").split(";"):
+        m = re.search(r"https?://\S+", part)
+        if not m or canon_url(m.group(0)) in ("facebook.com", "instagram.com", "x.com"):
+            continue  # ユーザー名を含まない汎用URLは対象外
+        (found if canon_url(m.group(0)) in page_links else missing).append(part.strip())
+    return found, missing
 
 
 def team_tokens(row):
@@ -128,7 +149,7 @@ def verify(row, cache, cache_path):
     url = (row.get("official_url") or "").split(";")[0].strip()
     res = {"http_status": "", "final_url": "", "redirected_to_other_domain": "", "page_title": "",
            "mentions_ultimate": "", "mentions_team_name": "", "verdict": "", "verify_note": "",
-           "verified_date": date.today().isoformat()}
+           "sns_found_on_official_page": "", "sns_not_found_on_page": "", "verified_date": date.today().isoformat()}
     if not url:
         return {**res, "verdict": "no_url"}
     parsed = urlparse(url)
@@ -156,6 +177,8 @@ def verify(row, cache, cache_path):
     mentions = any(k in body_sq for k in kw) or in_title
     team = any(t in body_sq for t in tokens) or any(t in title_sq for t in tokens)
     res.update(mentions_ultimate="yes" if mentions else "no", mentions_team_name="yes" if team else "no")
+    found, missing = check_sns(row, page.get("links", []))
+    res.update(sns_found_on_official_page=" ; ".join(found), sns_not_found_on_page=" ; ".join(missing))
 
     notes = []
     if res["redirected_to_other_domain"] == "yes":
@@ -187,7 +210,7 @@ def main():
         reader = csv.DictReader(f)
         rows, fields = list(reader), list(reader.fieldnames)
     added = ["http_status", "final_url", "redirected_to_other_domain", "page_title", "mentions_ultimate",
-             "mentions_team_name", "verdict", "verify_note", "verified_date"]
+             "mentions_team_name", "verdict", "verify_note", "sns_found_on_official_page", "sns_not_found_on_page", "verified_date"]
     counts = {}
     with open(args.out, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields + [c for c in added if c not in fields], extrasaction="ignore")
