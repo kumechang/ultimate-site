@@ -35,7 +35,7 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsi
     >
       <img
         src={thumbnailUrl}
-        alt=""
+        alt={`動画のサムネイル：${title}`}
         width="480"
         height="360"
         loading="lazy"
@@ -54,7 +54,7 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsi
       >
         <svg viewBox="0 0 24 24" class="ml-0.5 h-6 w-6 fill-current"><path d="M8 5v14l11-7z"></path></svg>
       </span>
-      <span class="sr-only">{title}（{channel}）：クリックでYouTubeの動画プレーヤーを表示</span>
+      <span class="sr-only">（{channel}）クリックでYouTubeの動画プレーヤーを表示</span>
     </a>
   </div>
   <figcaption class="mt-2 space-y-1 text-xs leading-relaxed text-slate-600">
