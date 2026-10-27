@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { SITE_TITLE } from '../consts';
+import { photoVariants } from '../lib/photoVariants';
 
 interface Props {
   title: string;
@@ -17,6 +18,8 @@ interface Props {
 const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, faqItems, summary } =
   Astro.props;
 
+const photo = await photoVariants(heroImage);
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -25,6 +28,7 @@ const jsonLd = {
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
   author: { '@type': 'Organization', name: SITE_TITLE },
+  ...(photo.urls.length > 0 && { image: photo.urls.map((u) => new URL(u, Astro.site).toString()) }),
 };
 
 const breadcrumbJsonLd = {
@@ -49,7 +53,15 @@ const faqJsonLd = faqItems && {
 };
 ---
 
-<BaseLayout title={title} description={description} type="article">
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  image={photo.og?.url}
+  imageWidth={photo.og?.width}
+  imageHeight={photo.og?.height}
+  imageAlt={photo.og ? (heroImageAlt ?? title) : undefined}
+>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
   {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}

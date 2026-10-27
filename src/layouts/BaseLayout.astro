@@ -9,11 +9,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
   noindex?: boolean;
   type?: 'website' | 'article';
 }
 
-const { title, description, image, noindex, type = 'website' } = Astro.props;
+const { title, description, image, imageWidth, imageHeight, imageAlt, noindex, type = 'website' } = Astro.props;
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -32,7 +35,16 @@ const organizationJsonLd = {
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
-    <Seo title={title} description={description} image={image} noindex={noindex} type={type} />
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      imageWidth={imageWidth}
+      imageHeight={imageHeight}
+      imageAlt={imageAlt}
+      noindex={noindex}
+      type={type}
+    />
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
     {GA_MEASUREMENT_ID && (
       <>
