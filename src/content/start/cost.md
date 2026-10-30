@@ -3,8 +3,12 @@ title: アルティメットを始めるのにかかる費用の目安【大学�
 description: アルティメットの大学サークルの年会費や大会参加費、ディスク・スパイクなど初期ギア一式にかかる費用の目安をまとめました。
 pubDate: 2026-09-16
 order: 3
-heroImage: /images/photos/cleats-01.jpg
-heroImageAlt: サッカーゴール前でボールに足をかける選手
+heroImage: /images/photos/ultimate-friends-seabee.avif
+heroImageAlt: 芝生のグラウンドで、仲間とアルティメットをプレーする人たち
+heroImageCredit:
+  author: MC3 Dustin W. Sisco（U.S. Navy）
+  license: パブリックドメイン（米国政府の著作物）
+  sourceUrl: https://commons.wikimedia.org/wiki/File:U.S._Sailors_assigned_to_Construction_Battalion_Maintenance_Unit_303_and_Naval_Facilities_Engineering_Command_Self-Help_play_Ultimate_Frisbee_during_the_Seabee_Olympics_130222-N-XD424-014.jpg
 summary:
   - "大学サークルの年会費は活動頻度により年間5,000円〜3万円程度と幅がある"
   - "初期ギア一式（ディスク・スパイク・グローブ等）はおよそ1万〜2万円が目安"

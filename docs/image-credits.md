@@ -8,6 +8,7 @@
 | ultimate-dive-d2-open.avif | /basics/super-plays/ | Quentin Dupré la tour | CC BY-SA 4.0 | [File:D2 Open - Frisbeurs vs Revolution'air.jpg](https://commons.wikimedia.org/wiki/File:D2_Open_-_Frisbeurs_vs_Revolution%27air.jpg) | 2026-10-30 | 縮小・AVIF変換・検索結果用に切り出し |
 | disc-golf-basket-forest.avif | /basics/vs-disc-golf/ | Rick Obst | CC BY 2.0 | [File:Hole 13 at Stewart Pond Disc Golf Course in Eugene, Oregon.jpg](https://commons.wikimedia.org/wiki/File:Hole_13_at_Stewart_Pond_Disc_Golf_Course_in_Eugene,_Oregon.jpg) | 2026-10-30 | 縮小・AVIF変換・検索結果用に切り出し |
 | rugby-lineout-night.avif | /basics/vs-rugby/ | U.S. Air Force photo by Staff Sergeant Jonathan Steffen | パブリックドメイン（米国政府の著作物） | [File:US Navy 120112-F-UI176-851 …](https://commons.wikimedia.org/wiki/File:US_Navy_120112-F-UI176-851_During_a_line-out,_members_assigned_to_French_Forces_Djibouti_and_Combined_Joint_Task_Force-Horn_of_Africa_jump_for_the.jpg) | 2026-10-30 | 縮小・AVIF変換・検索結果用に切り出し |
+| ultimate-friends-seabee.avif | /start/cost/ | MC3 Dustin W. Sisco（U.S. Navy） | パブリックドメイン（米国政府の著作物） | [File:U.S. Sailors … Seabee Olympics 130222-N-XD424-014.jpg](https://commons.wikimedia.org/wiki/File:U.S._Sailors_assigned_to_Construction_Battalion_Maintenance_Unit_303_and_Naval_Facilities_Engineering_Command_Self-Help_play_Ultimate_Frisbee_during_the_Seabee_Olympics_130222-N-XD424-014.jpg) | 2026-10-30 | 縮小・AVIF変換・検索結果用に切り出し |
 
 ## 運用
 - ライセンス・作者・年代（未成年が主役でないか）を、ファイルページと画像で確認してから使う。
