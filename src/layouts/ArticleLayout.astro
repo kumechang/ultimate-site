@@ -20,9 +20,10 @@ interface Props {
   };
   faqItems?: { question: string; answer: string }[];
   summary?: string[];
+  hasAffiliateLinks?: boolean;
 }
 
-const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, heroImageCredit, faqItems, summary } =
+const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, heroImageCredit, faqItems, summary, hasAffiliateLinks = false } =
   Astro.props;
 
 const photo = await photoVariants(heroImage);
@@ -91,6 +92,9 @@ const faqJsonLd = faqItems && {
     <p class="!mt-2 text-sm text-slate-500">
       更新日: {(updatedDate ?? pubDate).toLocaleDateString('ja-JP')}
     </p>
+    {hasAffiliateLinks && (
+      <p class="!mt-2 text-xs text-slate-500">本ページはアフィリエイト広告（Amazonアソシエイト）を含みます。</p>
+    )}
     {summary && summary.length > 0 && (
       <div class="not-prose my-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
         <p class="text-sm font-semibold text-slate-900">この記事の要点</p>
