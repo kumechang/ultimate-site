@@ -3,6 +3,12 @@ title: アルティメットとラグビーの違いとは？接触の有無・�
 description: アルティメットとラグビーの違いを、身体接触の有無・人数・審判制度・道具の観点から比較。ラグビー経験者がアルティメットに向いている理由も解説します。
 pubDate: 2026-09-25
 order: 6
+heroImage: /images/photos/rugby-lineout-night.avif
+heroImageAlt: 夜のラグビーの試合で、ラインアウトの選手が持ち上げられてボールに手を伸ばす様子
+heroImageCredit:
+  author: U.S. Air Force photo by Staff Sergeant Jonathan Steffen
+  license: パブリックドメイン（米国政府の著作物）
+  sourceUrl: https://commons.wikimedia.org/wiki/File:US_Navy_120112-F-UI176-851_During_a_line-out,_members_assigned_to_French_Forces_Djibouti_and_Combined_Joint_Task_Force-Horn_of_Africa_jump_for_the.jpg
 summary:
   - "最大の違いは身体接触の有無。アルティメットはルール上「非接触競技」、ラグビーはタックルを伴う接触競技"
   - "アルティメットは選手自身がジャッジするセルフジャッジ制、ラグビーはレフリー制"

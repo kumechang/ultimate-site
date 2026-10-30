@@ -3,6 +3,13 @@ title: アルティメットとディスクゴルフの違いとは？ルール�
 description: 同じフライングディスクを使うアルティメットとディスクゴルフの違いを、競技形式・ルール・道具の観点からわかりやすく比較して解説します。
 pubDate: 2026-09-16
 order: 2
+heroImage: /images/photos/disc-golf-basket-forest.avif
+heroImageAlt: 林の中にある、ディスクゴルフのバスケット（ゴール）
+heroImageCredit:
+  author: Rick Obst
+  license: CC BY 2.0
+  licenseUrl: https://creativecommons.org/licenses/by/2.0/deed.ja
+  sourceUrl: https://commons.wikimedia.org/wiki/File:Hole_13_at_Stewart_Pond_Disc_Golf_Course_in_Eugene,_Oregon.jpg
 summary:
   - "アルティメットは7人制のチームスポーツ、ディスクゴルフはゴルフ形式の個人競技"
   - "使うディスクも、アルティメットは175g規格1種類、ディスクゴルフは用途別の複数種類"

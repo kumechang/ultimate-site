@@ -10,6 +10,16 @@ const articleSchema = z.object({
   draft: z.boolean().default(false),
   heroImage: z.string().optional(),
   heroImageAlt: z.string().optional(),
+  // 外部の写真（Wikimedia Commonsなど）を使うときの出典表示。ライセンスが求めるクレジットを、画像の下に出す
+  heroImageCredit: z
+    .object({
+      author: z.string(),
+      license: z.string(),
+      licenseUrl: z.string().url().optional(),
+      sourceUrl: z.string().url(),
+      modified: z.boolean().default(true),
+    })
+    .optional(),
   // 記事冒頭に表示する「結論ファースト」の要点(2〜4個)
   summary: z.array(z.string()).optional(),
 });
