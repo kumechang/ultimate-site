@@ -4,18 +4,13 @@ interface Props {
   point: string;
   amazonUrl: string;
   imageAlt?: string;
+  imageUrl?: string;
   tier?: string;
   recommended?: boolean;
 }
 
-const { name, point, amazonUrl, tier, imageAlt, recommended = false } = Astro.props;
-
-// dp/ の後の10桁ASINから商品画像URLを組み立てる（Amazon非公式パターンのため画像が取得できない商品もある）
-const asinMatch = amazonUrl.match(/\/dp\/([A-Z0-9]{10})/);
-const asin = asinMatch ? asinMatch[1] : null;
-const imageUrl = asin
-  ? `https://images-na.ssl-images-amazon.com/images/P/${asin}.09.MZZZZZZZ.jpg`
-  : null;
+const { name, point, amazonUrl, tier, imageAlt, imageUrl, recommended = false } = Astro.props;
+// imageUrl は、AmazonアソシエイトのSiteStripe（画像リンク）で取得したURLを渡す（自サーバーには複製しない）
 ---
 
 <div
