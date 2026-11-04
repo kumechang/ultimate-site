@@ -55,6 +55,7 @@ const glossary = defineCollection({
     titleTerm: z.string().optional(),
     reading: z.string().optional(),
     description: z.string().optional(),
+    updatedDate: z.coerce.date().optional(),
     order: z.number().default(0),
   }),
 });
