@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, AFFILIATE_DISCLOSURE, NAV_LINKS } from '../consts';
+import { SITE_TITLE, AFFILIATE_DISCLOSURE, AMAZON_TRADEMARK, NAV_LINKS } from '../consts';
 const year = new Date().getFullYear();
 ---
 
@@ -10,7 +10,8 @@ const year = new Date().getFullYear();
         <a href={link.href} class="hover:text-sky-600">{link.label}</a>
       ))}
     </nav>
-    <p class="mb-4 leading-relaxed">{AFFILIATE_DISCLOSURE}</p>
+    <p class="mb-2 leading-relaxed">{AFFILIATE_DISCLOSURE}</p>
+    <p class="mb-4 text-xs leading-relaxed text-slate-500">{AMAZON_TRADEMARK}</p>
     <p class="text-slate-500">
       &copy; {year} {SITE_TITLE} ・ <a href="/about/" class="hover:text-sky-600">このサイトについて</a> ・ <a href="/privacy/" class="hover:text-sky-600">プライバシーポリシー</a>
     </p>

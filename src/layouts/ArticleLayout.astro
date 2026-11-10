@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import { SITE_TITLE } from '../consts';
 import { photoVariants } from '../lib/photoVariants';
+import NextStep from '../components/NextStep.astro';
 
 interface Props {
   title: string;
@@ -21,9 +22,10 @@ interface Props {
   faqItems?: { question: string; answer: string }[];
   summary?: string[];
   hasAffiliateLinks?: boolean;
+  nextStep?: 'full' | 'compact';
 }
 
-const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, heroImageCredit, faqItems, summary, hasAffiliateLinks = false } =
+const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroImageAlt, heroImageCredit, faqItems, summary, hasAffiliateLinks = false, nextStep } =
   Astro.props;
 
 const photo = await photoVariants(heroImage);
@@ -129,5 +131,6 @@ const faqJsonLd = faqItems && {
       </p>
     )}
     <slot />
+    {nextStep && <NextStep variant={nextStep} />}
   </article>
 </BaseLayout>
