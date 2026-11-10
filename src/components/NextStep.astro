@@ -1,0 +1,25 @@
+---
+// 記事の末尾に出す「次の一歩」。商品の購入に偏らず、体験場所・費用・道具を同格に並べる。
+// リンクのクリックは、解析用に data-nav 属性で計測する（BaseLayout）。
+interface Props {
+  variant?: 'full' | 'compact';
+}
+const { variant = 'full' } = Astro.props;
+---
+
+{variant === 'full' ? (
+  <aside class="not-prose mt-10 rounded-lg border border-slate-200 bg-slate-50 p-4" aria-label="次の一歩">
+    <p class="text-sm font-semibold text-slate-900">次の一歩｜始めるなら</p>
+    <p class="mt-1 text-sm text-slate-700">読んだ内容を実際に試すなら、まずは次のページが参考になります。</p>
+    <ul class="mt-2 space-y-1 text-sm">
+      <li><a href="/start/what-to-buy/" data-nav="nextstep-what-to-buy" class="text-sky-700 underline">始めるのに必要な道具（最初に用意したい3つ）</a></li>
+      <li><a href="/start/where-to-play/" data-nav="nextstep-where-to-play" class="text-sky-700 underline">体験できる場所の探し方</a></li>
+      <li><a href="/start/cost/" data-nav="nextstep-cost" class="text-sky-700 underline">初年度にかかる費用の目安</a></li>
+    </ul>
+  </aside>
+) : (
+  <aside class="not-prose mt-6 rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700" aria-label="次の一歩">
+    実際にプレーしてみたい方は、
+    <a href="/start/what-to-buy/" data-nav="nextstep-glossary-what-to-buy" class="text-sky-700 underline">始めるのに必要な道具</a>・<a href="/start/where-to-play/" data-nav="nextstep-glossary-where-to-play" class="text-sky-700 underline">体験できる場所</a>もご覧ください。
+  </aside>
+)}

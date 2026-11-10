@@ -12,7 +12,10 @@ export const NAV_LINKS = [
 
 // Amazonアソシエイト・プログラムの参加規約に基づく表記
 export const AFFILIATE_DISCLOSURE =
-  '当サイトはAmazonアソシエイト・プログラムを含む、複数のアフィリエイトプログラムに参加しています。当サイトの記事内で紹介する商品を通じて商品購入がされた場合、Amazon.co.jpより収益を受け取ることがあります。';
+  'アルティメットナビは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。当サイトの記事内で紹介する商品を通じて購入がされた場合、運営者は紹介料を受け取ることがあります。';
+
+export const AMAZON_TRADEMARK =
+  'Amazon、Amazon.co.jpおよびAmazon.co.jpロゴは、Amazon.com, Inc.またはその関連会社の商標です。';
 
 // Google Analytics 4 の測定ID。
 export const GA_MEASUREMENT_ID = 'G-MXSYJKDR93';
