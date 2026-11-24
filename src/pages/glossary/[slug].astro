@@ -10,6 +10,9 @@ export async function getStaticPaths() {
   }));
 }
 
+// 用語集の初回公開日（glossary スキーマに pubDate がないため、ここで固定する）
+const GLOSSARY_PUB_DATE = new Date('2026-09-16');
+
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const title = `${entry.data.titleTerm ?? entry.data.term}とは？アルティメット用語の意味を解説`;
@@ -29,7 +32,7 @@ const definedTermJsonLd = {
 <ArticleLayout
   title={title}
   description={description}
-  pubDate={new Date('2026-09-16')}
+  pubDate={GLOSSARY_PUB_DATE}
   updatedDate={entry.data.updatedDate}
   nextStep="compact"
   breadcrumb={[
@@ -41,6 +44,6 @@ const definedTermJsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(definedTermJsonLd)} />
   <Content />
   <p>
-    他の用語もあわせて確認したい場合は<a href="/glossary/">アルティメット用語集</a>をご覧ください。
+    他の用語もあわせて確認したい場合は<a href="/glossary/" data-nav="glossary-term-index">アルティメット用語集</a>をご覧ください。
   </p>
 </ArticleLayout>

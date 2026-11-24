@@ -44,6 +44,7 @@ const sections = [
       src={discThrowJump}
       alt="芝生の広場で、両腕を広げてジャンプする人"
       loading="eager"
+      fetchpriority="high"
       widths={[640, 1280, 1920]}
       sizes="100vw"
       quality={70}
@@ -57,6 +58,7 @@ const sections = [
       </p>
       <a
         href="/basics/what-is-ultimate/"
+        data-nav="home-hero-what-is-ultimate"
         class="mt-8 inline-block rounded-full bg-white px-6 py-3 font-semibold text-sky-700 hover:bg-sky-50"
       >
         アルティメットとは？を読む
@@ -69,7 +71,7 @@ const sections = [
     <ul class="mt-6 grid gap-5 sm:grid-cols-2">
       {sections.map((s) => (
         <li class="rounded-xl border border-slate-200 p-6 hover:border-slate-900 hover:shadow-sm">
-          <a href={s.href}>
+          <a href={s.href} data-nav={`home-card-${s.href.split('/')[1]}`}>
             <h3 class="relative pl-4 text-lg font-semibold text-slate-900 before:absolute before:left-0 before:top-1/2 before:h-2 before:w-2 before:-translate-y-1/2 before:rounded-sm before:bg-slate-900">
               {s.title}
             </h3>

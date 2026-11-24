@@ -1,11 +1,8 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const terms = (await getCollection('glossary')).sort((a, b) => a.data.order - b.data.order);
-const rendered = await Promise.all(
-  terms.map(async (term) => ({ term, Content: (await render(term)).Content }))
-);
 
 const definedTermSetJsonLd = {
   '@context': 'https://schema.org',
@@ -33,28 +30,26 @@ const definedTermSetJsonLd = {
     のページをご覧ください。
   </p>
 
-  <nav aria-label="用語一覧" class="mt-6 flex flex-wrap gap-2">
-    {terms.map((term) => (
-      <a
-        href={`#${term.id}`}
-        class="rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-700 hover:border-slate-900 hover:text-slate-900"
-      >
-        {term.data.term}
-      </a>
-    ))}
-  </nav>
+  <p class="mt-2 text-sm text-slate-600">
+    全{terms.length}語。各用語の詳しい説明と出典は、それぞれの個別ページにあります。
+  </p>
 
-  <dl class="prose-article mt-8">
-    {rendered.map(({ term, Content }) => (
-      <div id={term.id} class="mb-6 scroll-mt-24 border-b border-slate-100 pb-6">
-        <dt class="text-lg font-semibold text-slate-900">
-          <a href={`/glossary/${term.id}/`} class="hover:text-sky-600">{term.data.term}</a>
+  {/* 一覧は「用語名・読み・定義の1文・個別ページへのリンク」だけにする。本文は個別ページが唯一の場所（重複を避ける）。
+      li の id は、#stack のようなアンカーリンクのために残す */}
+  <ul class="mt-8 divide-y divide-slate-100">
+    {terms.map((term) => (
+      <li id={term.id} class="scroll-mt-24 py-5">
+        <h2 class="text-lg font-semibold text-slate-900">
+          <a href={`/glossary/${term.id}/`} data-nav={`glossary-index-${term.id}`} class="hover:text-sky-600">{term.data.term}</a>
           {term.data.reading && <span class="ml-2 text-xs font-normal text-slate-600">（{term.data.reading}）</span>}
-        </dt>
-        <dd class="mt-1">
-          <Content />
-        </dd>
-      </div>
+        </h2>
+        {term.data.description && <p class="mt-1 text-sm leading-relaxed text-slate-700">{term.data.description}</p>}
+        <p class="mt-1 text-sm">
+          <a href={`/glossary/${term.id}/`} data-nav={`glossary-index-more-${term.id}`} class="text-sky-700 underline">
+            {term.data.titleTerm ?? term.data.term}の意味と使い方を読む
+          </a>
+        </p>
+      </li>
     ))}
-  </dl>
+  </ul>
 </BaseLayout>

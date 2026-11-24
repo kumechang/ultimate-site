@@ -2,6 +2,7 @@
 title: アルティメットを体験できる場所の探し方
 description: アルティメットを体験できる場所の探し方を紹介。日本フライングディスク協会（JFDA）や都道府県ごとの地方協会、地域のサークルの情報を調べる方法や、「地域名 アルティメット 体験」で検索するコツまでまとめました。
 pubDate: 2026-09-16
+updatedDate: 2026-11-24
 order: 1
 heroImage: /images/photos/disc-throw-hold.avif
 heroImageAlt: フィールドでディスクを構える人
@@ -13,7 +14,7 @@ summary:
 
 ## 日本フライングディスク協会（JFDA）
 
-アルティメットを含むフライングディスク競技全般を統括しているのが**<a href="https://www.jfda.or.jp/" target="_blank" rel="noopener">日本フライングディスク協会（JFDA）</a>**です。公式サイトには、大会の日程や、都道府県ごとの協会の情報（<a href="https://www.jfda.or.jp/about/branch/" target="_blank" rel="noopener">都道府県協会の一覧</a>）が載っています。体験・練習会の情報は、JFDAのイベント情報サイト（<a href="https://events.jfda.or.jp/" target="_blank" rel="noopener">events.jfda.or.jp</a>）や、各都道府県協会・チームのサイトで探すのが近道です。
+アルティメットを含むフライングディスク競技全般を統括しているのが**<a href="https://www.jfda.or.jp/" target="_blank" rel="noopener">日本フライングディスク協会（JFDA）</a>**です。公式サイトには、大会の日程や、都道府県ごとの協会の情報（<a href="https://www.jfda.or.jp/about/branch/" target="_blank" rel="noopener">都道府県協会の一覧</a>。掲載されている役員一覧は2024年度のものです。連絡先が最新かどうかは、各協会のサイトで確認してください）が載っています。体験・練習会の情報は、JFDAのイベント情報サイト（<a href="https://events.jfda.or.jp/" target="_blank" rel="noopener">events.jfda.or.jp</a>）や、各都道府県協会・チームのサイトで探すのが近道です。
 
 ## 都道府県協会・地域サークル
 
@@ -25,7 +26,7 @@ summary:
 - SNS（X、Instagramなど）でチーム・サークルの活動情報を探す
 - 大学がある地域では、大学のアルティメットサークルが体験会を開催していることもある
 
-初めての方は、道具を持っていなくても参加できる体験会・初心者会からスタートするのが安心です。継続して活動する場所を探す場合は、[大学サークル・社会人チームの探し方](/start/find-team/)も参考にしてください。
+体験会の中には、道具を持っていなくても参加できるものもあります。道具の貸し出しや参加条件は、主催者の案内で確認してください。継続して活動する場所を探す場合は、[大学サークル・社会人チームの探し方](/start/find-team/)も参考にしてください。
 
 運動未経験の方や不安がある方は、先に[よくある質問](/start/faq/)に目を通しておくと安心です。
 

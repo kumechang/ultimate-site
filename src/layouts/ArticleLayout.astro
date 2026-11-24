@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import { SITE_TITLE } from '../consts';
 import { photoVariants } from '../lib/photoVariants';
@@ -30,6 +31,17 @@ const { title, description, pubDate, updatedDate, breadcrumb, heroImage, heroIma
 
 const photo = await photoVariants(heroImage);
 
+// 記事の写真は src/assets/photos に置き、astro:assets で幅別（srcset）の AVIF に変換して配信する。
+// frontmatter の heroImage は従来どおり /images/photos/xxx の形で書く（ファイル名で src/assets/photos を探す）。
+// src/assets/photos に無い写真（public/images/photos に残してある出所確認中のもの）は、変換せずそのまま出す。
+const heroModules = import.meta.glob<ImageMetadata>('../assets/photos/*.{avif,jpg,png}', {
+  eager: true,
+  import: 'default',
+});
+const heroAsset = heroImage ? heroModules[`../assets/photos/${heroImage.split('/').pop()}`] : undefined;
+const heroClass = ['not-prose aspect-video w-full rounded-lg object-cover', heroImageCredit ? 'mt-6' : 'my-6'];
+const siteUrl = Astro.site?.toString();
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -38,7 +50,18 @@ const jsonLd = {
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
   author: { '@type': 'Organization', name: SITE_TITLE },
-  ...(photo.urls.length > 0 && { image: photo.urls.map((u) => new URL(u, Astro.site).toString()) }),
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_TITLE,
+    url: siteUrl,
+    logo: { '@type': 'ImageObject', url: new URL('/apple-touch-icon.png', Astro.site).toString() },
+  },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
+  // 写真のある記事は検索結果用の画像（16:9 / 4:3 / 1:1）、ない記事は og:image と同じ既定画像
+  image:
+    photo.urls.length > 0
+      ? photo.urls.map((u) => new URL(u, Astro.site).toString())
+      : [new URL('/og-default.png', Astro.site).toString()],
 };
 
 const breadcrumbJsonLd = {
@@ -52,7 +75,7 @@ const breadcrumbJsonLd = {
   })),
 };
 
-const faqJsonLd = faqItems && {
+const faqJsonLd = faqItems && faqItems.length > 0 && {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: faqItems.map((item) => ({
@@ -95,7 +118,7 @@ const faqJsonLd = faqItems && {
       更新日: {(updatedDate ?? pubDate).toLocaleDateString('ja-JP')}
     </p>
     {hasAffiliateLinks && (
-      <p class="!mt-2 text-xs text-slate-500">本ページはアフィリエイト広告（Amazonアソシエイト）を含みます。</p>
+      <p class="!mt-2 text-sm font-semibold text-slate-700">本ページはアフィリエイト広告（Amazonアソシエイト）を含みます。</p>
     )}
     {summary && summary.length > 0 && (
       <div class="not-prose my-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
@@ -110,13 +133,21 @@ const faqJsonLd = faqItems && {
         </ul>
       </div>
     )}
-    {heroImage && (
-      <img
-        src={heroImage}
+    {heroAsset ? (
+      <Image
+        src={heroAsset}
         alt={heroImageAlt ?? title}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 1024px) 992px, calc(100vw - 2rem)"
+        format="avif"
+        quality={60}
+        width={1200}
         loading="eager"
-        class:list={['not-prose aspect-video w-full rounded-lg object-cover', heroImageCredit ? 'mt-6' : 'my-6']}
+        fetchpriority="high"
+        class:list={heroClass}
       />
+    ) : (
+      heroImage && <img src={heroImage} alt={heroImageAlt ?? title} loading="eager" class:list={heroClass} />
     )}
     {heroImage && heroImageCredit && (
       <p class="not-prose mb-6 mt-1 text-xs text-slate-500">

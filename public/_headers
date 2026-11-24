@@ -1,0 +1,9 @@
+# Cloudflare（Pages / Workers Static Assets）の静的ヘッダー。ビルド時に dist/_headers として出力される。
+# ハッシュ付きのファイル名（/_astro/*）は内容が変わるとファイル名も変わるため、1年間キャッシュして再検証をなくす。
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+# /images/* はファイル名が固定なので、差し替えがすぐ反映されるよう1日にとどめる。
+/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/favicon.*
+  Cache-Control: public, max-age=86400

@@ -18,12 +18,28 @@ interface Props {
 
 const { title, description, image, imageWidth, imageHeight, imageAlt, noindex, type = 'website' } = Astro.props;
 
+const siteUrl = Astro.site?.toString();
+
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: SITE_TITLE,
-  url: Astro.site?.toString(),
+  url: siteUrl,
+  // apple-touch-icon（180x180）。検索結果でのサイト名・アイコン表示の手がかりになる
+  logo: new URL('/apple-touch-icon.png', Astro.site).toString(),
 };
+
+// WebSite はトップページだけに出す（サイト全体の名前の手がかり）
+const websiteJsonLd =
+  Astro.url.pathname === '/'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: SITE_TITLE,
+        alternateName: 'ultimate-navi.com',
+        url: siteUrl,
+      }
+    : undefined;
 ---
 
 <!doctype html>
@@ -46,27 +62,60 @@ const organizationJsonLd = {
       type={type}
     />
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+    {websiteJsonLd && <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />}
     {GA_MEASUREMENT_ID && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
         <script define:vars={{ GA_MEASUREMENT_ID }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', GA_MEASUREMENT_ID);
+          // define:vars を付けたスクリプトは Astro が即時関数で囲むため、window に明示的に公開する。
+          // （ここを関数宣言のままにすると window.gtag が未定義になり、下のクリック計測が送信されない）
+          window.gtag = function gtag() { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', GA_MEASUREMENT_ID);
         </script>
       </>
     )}
     <script>
-      document.addEventListener('click', (event) => {
-        const nav = event.target.closest && event.target.closest('a[data-nav]');
-        if (nav && typeof window.gtag === 'function') {
-          window.gtag('event', 'internal_nav', { nav: nav.dataset.nav });
+      // クリック計測（GA4）。リンクに付けた data 属性を読む、共通のハンドラー。
+      //   a[data-nav]           内部リンク。internal_nav（nav=「{場所}-{行き先}」、dest_path=行き先のパス）
+      //   a[rel~="sponsored"]   アフィリエイトのリンク。amazon_link_click（link_url、item_name=商品名）
+      //   a[data-yt-embed]      YouTube の「クリックで再生」。video_play_click（video_title）
+      // 収集する項目を増やしたら、プライバシーポリシー（src/pages/privacy.astro）の表も合わせて更新する。
+      // 通常の左クリックのほか、中ボタン（auxclick）も数える。ページ遷移で送信が切れないよう beacon で送る。
+      type GtagWindow = Window & { gtag?: (...args: unknown[]) => void };
+
+      function track(event: MouseEvent) {
+        const gtag = (window as GtagWindow).gtag;
+        if (typeof gtag !== 'function') return;
+        const target = event.target;
+        const el = target instanceof Element ? target : (target as Node | null)?.parentElement;
+        if (!el) return;
+        const send = (name: string, params: Record<string, string | undefined>) =>
+          gtag('event', name, { transport_type: 'beacon', ...params });
+
+        const nav = el.closest<HTMLAnchorElement>('a[data-nav]');
+        if (nav) {
+          send('internal_nav', { nav: nav.dataset.nav, dest_path: new URL(nav.href, location.href).pathname });
         }
-        const link = event.target.closest && event.target.closest('a[href*="amazon.co.jp"]');
-        if (link && typeof window.gtag === 'function') {
-          window.gtag('event', 'amazon_link_click', { link_url: link.href });
+
+        const aff = el.closest<HTMLAnchorElement>('a[rel~="sponsored"]');
+        if (aff) {
+          // 商品名は data-item を優先し、なければカード内の最初の段落（商品名）を使う。GA4 の値は100文字まで
+          const item = aff.dataset.item ?? aff.parentElement?.querySelector('p')?.textContent ?? undefined;
+          send('amazon_link_click', { link_url: aff.href, item_name: item?.trim().slice(0, 100) });
         }
+
+        // YouTube は、修飾キー付きのクリック（別タブで開く操作）では再生しないので数えない
+        const yt = el.closest<HTMLAnchorElement>('a[data-yt-embed]');
+        if (yt && event.type === 'click' && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {
+          send('video_play_click', { video_title: yt.dataset.ytTitle });
+        }
+      }
+
+      document.addEventListener('click', track);
+      document.addEventListener('auxclick', (event) => {
+        if (event.button === 1) track(event);
       });
     </script>
   </head>

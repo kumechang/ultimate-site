@@ -1,34 +1,28 @@
 ---
+// 商品カード（Amazonアソシエイトのリンク）
+//
+// 書き方のルール（ギア監査 2026-11-24）:
+// - ランク・比較・優劣の表現（定番・人気・最有力・コスパ・上位・おすすめ順など）は、根拠がないため書かない。
+//   そのため、順位やバッジ、強調枠のための prop（tier・recommended）は持たない。
+// - point には、確認できた事実と「詳細・用途・素材・サイズは商品ページで確認」だけを書く。効能・効果の断定、価格、体験談風の表現は書かない。
+// - 非専用品（他競技用品など）は、その旨を point に書く。
 interface Props {
   name: string;
   point: string;
   amazonUrl: string;
   imageAlt?: string;
   imageUrl?: string;
-  tier?: string;
-  recommended?: boolean;
 }
 
-const { name, point, amazonUrl, tier, imageAlt, imageUrl, recommended = false } = Astro.props;
-// imageUrl は、AmazonアソシエイトのSiteStripe（画像リンク）で取得したURLを渡す（自サーバーには複製しない）
+const { name, point, amazonUrl, imageAlt, imageUrl } = Astro.props;
+// imageUrl の取得方法は、Amazonアソシエイトの現行の画像ポリシーを運営者が確認するまで保留中（監査 2026-11-24 §2）。
+// 確認できない場合は imageUrl を渡さず、テキストカードにする。自サーバーには複製しない。
 ---
 
-<div
-  class:list={[
-    'not-prose my-6 rounded-lg border p-4 shadow-sm',
-    recommended ? 'border-sky-600 ring-1 ring-sky-600' : 'border-slate-200',
-  ]}
->
-  {tier && (
-    <span
-      class:list={[
-        'mb-2 inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold text-white',
-        recommended ? 'bg-sky-600' : 'bg-slate-900',
-      ]}
-    >
-      {tier}
-    </span>
-  )}
+<div class="not-prose my-6 rounded-lg border border-slate-300 p-4 shadow-sm">
+  <p class="mb-3 inline-block rounded border border-slate-400 bg-slate-100 px-2 py-1 text-sm font-semibold text-slate-900">
+    広告（Amazonアソシエイトのリンク）
+  </p>
   <div class="flex gap-4">
     {imageUrl && (
       <img
@@ -43,16 +37,16 @@ const { name, point, amazonUrl, tier, imageAlt, imageUrl, recommended = false } 
     )}
     <div class="min-w-0 flex-1">
       <p class="font-semibold text-slate-900">{name}</p>
-      <p class="mt-1 text-sm text-slate-600">{point}</p>
-      <a
+      <p class="mt-1 text-sm text-slate-700">{point}</p>
+      <a data-item={name}
         href={amazonUrl}
         target="_blank"
         rel="sponsored noopener"
-        class="mt-3 inline-block rounded-md bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700"
+        class="mt-3 inline-block rounded-md bg-sky-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-800"
       >
         Amazonで詳細を見る
       </a>
-      <p class="mt-2 text-xs text-slate-500">価格は変動します。最新価格はAmazon商品ページでご確認ください。</p>
+      <p class="mt-2 text-sm text-slate-700">価格は変動します。最新価格はAmazon商品ページでご確認ください。</p>
     </div>
   </div>
 </div>

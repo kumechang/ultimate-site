@@ -38,7 +38,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <tbody>
           <tr>
             <td>Googleアナリティクス（Google LLC）</td>
-            <td>閲覧したページ、閲覧日時、端末・ブラウザの情報、おおまかな地域、Cookie等の識別子、Amazonへのリンクをクリックした事実とそのリンクURL、サイト内の案内リンク（「次の一歩」など）をクリックした事実</td>
+            <td>閲覧したページ、閲覧日時、端末・ブラウザの情報、おおまかな地域、Cookie等の識別子、Amazonへのリンクをクリックした事実（リンクURLと商品名）、サイト内のリンク（ヘッダー・フッター・各一覧ページ・「次の一歩」・用語集の一覧など）をクリックした事実（リンクの場所とリンク先のページ）、YouTube動画の再生ボタンをクリックした事実（動画のタイトル）</td>
             <td>サイトの利用状況の把握と改善</td>
           </tr>
           <tr>
@@ -65,7 +65,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <h3>Googleアナリティクス</h3>
     <p>
-      アクセス状況を把握するためにGoogleアナリティクスを利用しています。Cookie等を使って利用状況を収集しますが、個人を特定する情報は含まれません。ブラウザの設定でCookieを無効にしたり、<a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" rel="noopener">Googleアナリティクス オプトアウト アドオン</a>を導入したりすると、収集を避けられます。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">Googleのサービスを使用するサイトやアプリから収集した情報のGoogleによる使用</a>および<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener">Googleのプライバシーポリシー</a>をご覧ください。
+      アクセス状況を把握するためにGoogleアナリティクスを利用しています。Cookie等を使って利用状況を収集しますが、個人を特定する情報は含まれません。ページの閲覧のほか、上の表のリンクのクリックを、どのリンクがどのくらい使われているかを知るために記録します（クリックしたリンクの場所・リンク先・商品名・動画のタイトルだけを記録し、入力された内容は取得しません）。ブラウザの設定でCookieを無効にしたり、<a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" rel="noopener">Googleアナリティクス オプトアウト アドオン</a>を導入したりすると、収集を避けられます。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">Googleのサービスを使用するサイトやアプリから収集した情報のGoogleによる使用</a>および<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener">Googleのプライバシーポリシー</a>をご覧ください。
     </p>
 
     <h3>YouTube動画の埋め込み</h3>
@@ -92,6 +92,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p>
       サービスの追加や法令の変更などにあわせて、このポリシーを見直すことがあります。変更した場合は、このページで最新の内容をお知らせします。
     </p>
-    <p class="text-sm text-slate-500">制定：2026年10月20日</p>
+    <p class="text-sm text-slate-500">制定：2026年10月20日／最終改定：2026年11月24日（アクセス解析で記録するクリックの項目を追記しました）</p>
   </div>
 </BaseLayout>
