@@ -38,7 +38,7 @@ const { name, point, amazonUrl, imageAlt, imageUrl } = Astro.props;
     <div class="min-w-0 flex-1">
       <p class="font-semibold text-slate-900">{name}</p>
       <p class="mt-1 text-sm text-slate-700">{point}</p>
-      <a
+      <a data-item={name}
         href={amazonUrl}
         target="_blank"
         rel="sponsored noopener"

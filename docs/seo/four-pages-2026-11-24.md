@@ -20,3 +20,12 @@
 ## 要確認（運用者側）
 - Amazon アソシエイトの画像利用条件（既存の商品画像はそのまま）
 - 経験者による最終レビュー（特に shoes のサイズ選び・金属スタッドの注意書き）
+
+## 追記：同日に実施した他ページの変更（対照群への影響の記録）
+運営者の指示により、4ページ以外にも11/24付の変更を入れた。11/25以降の比較では、以下の変更が混ざる点に注意する。
+- 事実修正: basics（rules, what-is-ultimate, positions, tactics, super-plays）、skills/throws、start（annual-schedule, cost, faq, find-team, where-to-play, what-to-buy）
+- ギア: gloves（改訂）、disc（175g訂正・改訂）、accessories（カード23→3）、apparel（カード12→3）、AffiliateCard（ランク表示廃止・広告表示を明瞭化）
+- 用語集: 一覧ページを本文なしに変更（重複解消）。sotg/cup/force/break/throw-off ほか加筆。stack は関連リンク2行のみ追加
+- 技術: GA4の gtag 修正と計測イベント追加、ヒーロー画像の最適化、`_headers`（キャッシュ）、sitemap lastmod、JSON-LD
+- 変更しなかったもの: タイトル、Amazon商品画像のURL
+- 監査レポート: `docs/audit/*.md`

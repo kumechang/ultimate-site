@@ -12,13 +12,18 @@ interface Props {
   type?: 'website' | 'article';
 }
 
+// 既定のOGP画像（public/og-default.png, 1280x720）は、寸法と代替テキストを自動で付ける。
+// ページ固有の画像を渡すときは、呼び出し側で imageWidth / imageHeight / imageAlt を指定する。
+const DEFAULT_IMAGE = '/og-default.png';
+const DEFAULT_IMAGE_ALT = 'アルティメットナビのロゴと、ディスクを投げる人のシルエット';
+
 const {
   title,
   description = SITE_DESCRIPTION,
-  image = '/og-default.png',
-  imageWidth,
-  imageHeight,
-  imageAlt,
+  image = DEFAULT_IMAGE,
+  imageWidth = image === DEFAULT_IMAGE ? 1280 : undefined,
+  imageHeight = image === DEFAULT_IMAGE ? 720 : undefined,
+  imageAlt = image === DEFAULT_IMAGE ? DEFAULT_IMAGE_ALT : undefined,
   noindex = false,
   type = 'website',
 } = Astro.props;

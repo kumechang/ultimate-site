@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { faqFromMarkdown } from '../../lib/faqFromMarkdown';
 
 export async function getStaticPaths() {
   const entries = await getCollection('start', ({ data }) => !data.draft);
@@ -13,40 +14,8 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const faqItems =
-  entry.id === 'faq'
-    ? [
-        {
-          question: '運動未経験・初心者でも大丈夫？',
-          answer:
-            '大丈夫です。未経験者を歓迎する大学サークルは多く、大学から初めて競技を始める人も少なくありません。基本ルールやスローは入部後に練習で身につけていくのが一般的なので、始める前に運動経験は必要ありません。',
-        },
-        {
-          question: '体育会系のノリが強い部活動ですか？',
-          answer:
-            'サークルによります。大会出場を本格的に目指すチームから、週1回楽しく汗を流す程度のサークルまで幅広く存在します。見学・体験の際に雰囲気を確認し、自分に合った活動頻度・熱量のところを選ぶのがおすすめです。',
-        },
-        {
-          question: '女子でも参加できますか？男女一緒にプレーするのですか？',
-          answer:
-            'はい、女性も参加できます。アルティメットには、男女混合（ミックス）の部門もあり、男女が同じチームでプレーする大会もあります。一方、大学の主要大会は、オープン部門（性別不問）とウィメン部門（女性のみ）に分かれて開かれ、ミックスは別の大会です。サークルの練習が男女一緒かどうかは、チームごとに違うので、見学で確認しましょう。',
-        },
-        {
-          question: '練習はどれくらいの頻度でありますか？',
-          answer:
-            'サークルによって週1〜2回のところから、週3回以上のところまでさまざまです。大会シーズンが近づくと練習頻度が増えるサークルが多くあります。',
-        },
-        {
-          question: '怪我のリスクはありますか？',
-          answer:
-            '急なダッシュや方向転換、レイアウト（体を投げ出すプレー）による突き指・捻挫が代表的な怪我です。テーピングやサポーターが、予防の助けになる場合があります。スポーツ保険への加入も、あわせて検討しましょう。',
-        },
-        {
-          question: '何から揃えればいいですか？',
-          answer: '最初に用意を検討したいのは、ディスク・スパイク・動きやすい服の3つです。',
-        },
-      ]
-    : undefined;
+// FAQPage の構造化データは、本文の「## Q. …」の見出しと回答から作る（画面の文章と常に一致させる）
+const faqItems = entry.id === 'faq' ? faqFromMarkdown(entry.body) : undefined;
 ---
 
 <ArticleLayout
